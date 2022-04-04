@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "280839346245",
+    "project_id": "gac-yac",
+    "storage_bucket": "gac-yac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280839346245:android:0588992ce116cf9be9ab2c",
+        "android_client_info": {
+          "package_name": "com.example.gacyac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280839346245-fsm7g9gt7d5jo5e1pnvv6q6rqj5ag5du.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYqLplakc5xD_naMuwfIQI0ItAYc51-vE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280839346245-fsm7g9gt7d5jo5e1pnvv6q6rqj5ag5du.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
