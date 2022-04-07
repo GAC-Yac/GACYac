@@ -13,6 +13,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
@@ -43,10 +44,15 @@ class MainActivity : AppCompatActivity() {
         //}
 
         //titleButton.setOnClickListener {
-            //clicking title opens up activity for the post
+        //clicking title opens up activity for the post
         //}
 
+        var addButton: Button = findViewById(R.id.btnAddPost)
+
+        addButton.setOnClickListener {
+            val intent = CreatePost.newIntent(this)
+            startActivity(intent)
+        }
     }
 
 }
-
