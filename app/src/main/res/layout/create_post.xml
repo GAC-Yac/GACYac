@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin = "16dp">
+
+    <EditText
+        android:id="@+id/post_title"
+        android:layout_width="390dp"
+        android:layout_height="59dp"
+        android:hint="@string/post_title" />
+
+    <EditText
+        android:id="@+id/post_text"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:hint="@string/post_text"
+        android:gravity="top"/>
+
+    <Button
+        android:id="@+id/save_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_text" />
+
+    <Button
+        android:id="@+id/post_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tuesday March 1 12:53 EST 2022" />
+
+</LinearLayout>
