@@ -4,12 +4,14 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,13 @@ class MainActivity : AppCompatActivity() {
         val myRef = database.getReference("message")
 
         myRef.setValue("Hello, World!")
+
+        var addButton: Button = findViewById(R.id.btnAddPost)
+
+        addButton.setOnClickListener {
+            val intent = CreatePost.newIntent(this)
+            startActivity(intent)
+        }
 
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
@@ -37,5 +46,4 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-
 }
