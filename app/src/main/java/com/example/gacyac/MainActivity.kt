@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        titleButton = findViewById(R.id.post_title)
+        //titleButton = findViewById(R.id.post_title)
 
         val database = Firebase.database
         val myRef = database.getReference("message")
@@ -40,14 +40,14 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-        fun changeTitle(titleButton: Button){
-            val editTextValue: String = titleButton.getText().toString()
-            editTitle.setText(editTextValue)
-        }
+        //fun changeTitle(titleButton: Button){
+        //    val editTextValue: String = titleButton.getText().toString()
+        //    editTitle.setText(editTextValue)
+        //}
 
-        titleButton.setOnClickListener {
+        //titleButton.setOnClickListener {
             //clicking title opens up activity for the post
-        }
+        //}
 
     }
 
