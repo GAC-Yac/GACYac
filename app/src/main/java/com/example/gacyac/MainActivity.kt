@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
@@ -21,25 +22,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //titleButton = findViewById(R.id.post_title)
 
-        val database = Firebase.database
-        val myRef = database.getReference("message")
+        val database = Firebase.firestore
+        val user = hashMapOf(
+            "first" to "Big",
+            "last" to "Z",
+            "pulls" to true
+        )
 
-        myRef.setValue("Hello, World!")
-
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d(TAG, "Value is: $value")
+        database.collection("users")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
             }
-        })
         //fun changeTitle(titleButton: Button){
         //    val editTextValue: String = titleButton.getText().toString()
         //    editTitle.setText(editTextValue)
