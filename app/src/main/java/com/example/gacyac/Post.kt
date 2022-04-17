@@ -1,7 +1,12 @@
 package com.example.gacyac
 
-data class Post(
+var postList = mutableListOf<Post>()
+
+class Post(
     var title: String,
     var text: String,
-    var karma: Int
+    var bonuspoints: Int,
+    var username: String,
+    var time: String,
+    var id: Int? = postList.size
 )

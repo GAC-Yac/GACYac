@@ -12,4 +12,5 @@
     <string name="bonus_points_placeholder">Bonus Points</string>
     <string name="fax">Fax</string>
     <string name="cap">Cap</string>
+    <string name="comments_header">Comments</string>
 </resources>

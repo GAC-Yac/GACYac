@@ -60,6 +60,7 @@ class CreatePost : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             saveToDatabase()
+            finish()
         }
     }
 
