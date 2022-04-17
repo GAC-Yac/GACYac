@@ -14,13 +14,28 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.content.Intent
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.gacyac.databinding.ActivityMainBinding
+import com.example.gacyac.databinding.PostItemBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
     private lateinit var editTitle: EditText
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var postItem: Post
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.postRecyclerView.apply{
+            layoutManager = GridLayoutManager(applicationContext, 1)
+            adapter = PostAdapter(postList)
+        }
+
+        //setContentView(R.layout.activity_main)
         //titleButton = findViewById(R.id.post_title)
 
         val database = Firebase.firestore
@@ -47,12 +62,40 @@ class MainActivity : AppCompatActivity() {
         //clicking title opens up activity for the post
         //}
 
+
+        // Displaying Posts
+        fillWithPosts()
+        val mainActivity = this
+
+        // Button Functionality
         var addButton: Button = findViewById(R.id.btnAddPost)
 
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
+
+        var bpButton: Button = findViewById(R.id.btnBonusPoints)
+
+        /*bpButton.setOnClickListener{
+            postList.clear()
+        }*/
+
+    }
+
+    private fun fillWithPosts() {
+        /*for(){
+            // for each post instance in the database, make a Post object and fill it with the contents from each database post
+            val post = Post()
+        }*/
+        val testPost = Post(
+            "Test Post",
+            "This is a test post.",
+            0,
+            "Big L",
+            "April 17, 2022")
+
+        postList.add(testPost)
     }
 
 }
