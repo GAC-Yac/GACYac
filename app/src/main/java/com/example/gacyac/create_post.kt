@@ -18,6 +18,7 @@ class CreatePost : AppCompatActivity() {
     private lateinit var postTitleText: EditText
     private lateinit var postBodyText: EditText
     private lateinit var postDateButton: Button
+    private lateinit var create: Post
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,14 @@ class CreatePost : AppCompatActivity() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
 
-
+            // Creates a local Post object, for testing
+            create = Post(
+                postTitle,
+                postBody,
+                0,
+                "Big L",
+                "Right Now",
+            )
 
             val newPost = hashMapOf(
                 "title" to postTitle,
@@ -60,6 +68,10 @@ class CreatePost : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             saveToDatabase()
+
+            // Creates a local post variable
+            postList.add(create)
+
             finish()
         }
     }
