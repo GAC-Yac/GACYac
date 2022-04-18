@@ -8,5 +8,5 @@ class Post(
     var bonuspoints: Int,
     var username: String,
     var time: String,
-    var id: Int? = postList.size
+    var id: String
 )

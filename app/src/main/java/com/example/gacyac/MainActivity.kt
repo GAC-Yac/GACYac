@@ -96,6 +96,34 @@ class MainActivity : AppCompatActivity() {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
+
+        var bpButton: Button = findViewById(R.id.btnBonusPoints)
+
+        /*bpButton.setOnClickListener{
+            postList.clear()
+        }*/
+
+    }
+
+    private fun fillWithPosts() {
+        val database = Firebase.firestore
+        val docRef = database.collection("posts")
+        /*
+        for(){
+            // for each post instance in the database, make a Post object and fill it with the contents from each database post
+            val post = Post()
+        }*/
+
+        val testPost = Post(
+            "Test Post",
+            "This is a test post.",
+            0,
+            "Anonymous",
+            "Today",
+            "0"
+        )
+
+        postList.add(testPost)
     }
 
 }

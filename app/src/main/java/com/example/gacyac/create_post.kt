@@ -19,6 +19,7 @@ class CreatePost : AppCompatActivity() {
     private lateinit var postBodyText: EditText
     private lateinit var postDateButton: Button
     private lateinit var create: Post
+    lateinit var documentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +32,12 @@ class CreatePost : AppCompatActivity() {
         val database = Firebase.firestore
 
 
-
+        /*var postTitle = postTitleText.getText().toString()
+        var postBody = postBodyText.getText().toString()
+        */
         fun saveToDatabase() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
-
-            // Creates a local Post object, for testing
-            create = Post(
-                postTitle,
-                postBody,
-                0,
-                "Big L",
-                "Right Now",
-            )
 
             val newPost = hashMapOf(
                 "title" to postTitle,
@@ -61,7 +55,20 @@ class CreatePost : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
-
+            /*
+            documentID = documentReference.id
+            val anotherToast = Toast.makeText(this, documentID, Toast.LENGTH_LONG)
+            anotherToast.show()
+            */
+            // Creates a local Post object, for testing
+            create = Post(
+                postTitle,
+                postBody,
+                0,
+                "Big L",
+                "Right Now",
+                documentID
+            )
             val newToast = Toast.makeText(this, "DONE", Toast.LENGTH_LONG)
             newToast.show()
         }
