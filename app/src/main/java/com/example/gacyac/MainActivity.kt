@@ -84,16 +84,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillWithPosts() {
-        /*for(){
+        val database = Firebase.firestore
+        val docRef = database.collection("posts")
+        /*
+        for(){
             // for each post instance in the database, make a Post object and fill it with the contents from each database post
             val post = Post()
         }*/
+
         val testPost = Post(
             "Test Post",
             "This is a test post.",
             0,
-            "Big L",
-            "April 17, 2022")
+            "Anonymous",
+            "Today",
+            "0"
+        )
 
         postList.add(testPost)
     }
