@@ -51,7 +51,7 @@ class CreatePost : AppCompatActivity() {
                 "created" to timePostCreated
             )
 
-            database.collection("posts")
+            database.collection("newPosts")
                 .add(newPost)
                 .addOnSuccessListener { documentReference ->
                     documentID = documentReference.id
