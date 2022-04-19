@@ -1,5 +1,7 @@
 package com.example.gacyac
 
+import com.google.firebase.firestore.FieldValue
+
 var postList = mutableListOf<Post>()
 
 class Post(
@@ -7,6 +9,6 @@ class Post(
     var text: String,
     var bonuspoints: Int,
     var username: String,
-    var time: String,
+    var time: FieldValue,
     var id: String
 )

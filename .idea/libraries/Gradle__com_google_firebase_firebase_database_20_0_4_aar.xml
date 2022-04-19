@@ -5,6 +5,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/efa972e48d26eb0316bf21f0dfd70446/transformed/firebase-database-20.0.4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/efa972e48d26eb0316bf21f0dfd70446/transformed/firebase-database-20.0.4/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/efa972e48d26eb0316bf21f0dfd70446/transformed/firebase-database-20.0.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cb1a228e3581766155b8e78e9b7a15ac/transformed/firebase-database-20.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb1a228e3581766155b8e78e9b7a15ac/transformed/firebase-database-20.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb1a228e3581766155b8e78e9b7a15ac/transformed/firebase-database-20.0.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-database/20.0.4/d1d9ff68a5b521c3dc6f1767ab73da71598667f4/firebase-database-20.0.4-javadoc.jar!/" />

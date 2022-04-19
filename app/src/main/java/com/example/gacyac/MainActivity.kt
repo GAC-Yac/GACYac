@@ -6,18 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import android.content.Intent
-import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gacyac.databinding.ActivityMainBinding
-import com.example.gacyac.databinding.PostItemBinding
+import com.google.firebase.firestore.FieldValue
 
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
@@ -39,20 +32,6 @@ class MainActivity : AppCompatActivity() {
         //titleButton = findViewById(R.id.post_title)
 
         val database = Firebase.firestore
-        val user = hashMapOf(
-            "first" to "Big",
-            "last" to "Z",
-            "pulls" to true
-        )
-
-        database.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
         //fun changeTitle(titleButton: Button){
         //    val editTextValue: String = titleButton.getText().toString()
         //    editTitle.setText(editTextValue)
@@ -97,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             "This is a test post.",
             0,
             "Anonymous",
-            "Today",
+            FieldValue.serverTimestamp(),
             "0"
         )
 
