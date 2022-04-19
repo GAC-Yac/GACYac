@@ -11,6 +11,8 @@ import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.firebase.firestore.FieldValue
+import java.sql.Date
+import java.sql.Timestamp
 
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             "This is a test post.",
             0,
             "Anonymous",
-            FieldValue.serverTimestamp(),
+            Date(System.currentTimeMillis()),
             "0"
         )
 
