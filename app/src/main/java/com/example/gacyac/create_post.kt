@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -32,45 +33,41 @@ class CreatePost : AppCompatActivity() {
         val database = Firebase.firestore
 
 
-        /*var postTitle = postTitleText.getText().toString()
+        /*
+        var postTitle = postTitleText.getText().toString()
         var postBody = postBodyText.getText().toString()
         */
         fun saveToDatabase() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
+            var timePostCreated = FieldValue.serverTimestamp()
 
             val newPost = hashMapOf(
                 "title" to postTitle,
-                "body" to postBody
+                "body" to postBody,
+                "karma" to 0,
+                "created" to timePostCreated
             )
-
-            val toastText = Toast.makeText(this, "Sending", Toast.LENGTH_LONG)
-            toastText.show()
 
             database.collection("posts")
                 .add(newPost)
                 .addOnSuccessListener { documentReference ->
+                    documentID = documentReference.id
                     Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 }
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
-            /*
-            documentID = documentReference.id
-            val anotherToast = Toast.makeText(this, documentID, Toast.LENGTH_LONG)
-            anotherToast.show()
-            */
+
             // Creates a local Post object, for testing
             create = Post(
                 postTitle,
                 postBody,
                 0,
                 "Big L",
-                "Right Now",
-                documentID
+                timePostCreated,
+                "0"
             )
-            val newToast = Toast.makeText(this, "DONE", Toast.LENGTH_LONG)
-            newToast.show()
         }
 
         saveButton.setOnClickListener {

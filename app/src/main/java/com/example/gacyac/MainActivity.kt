@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.gacyac.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FieldValue
 
 
 @Suppress("DEPRECATION")
@@ -80,6 +83,10 @@ class MainActivity : AppCompatActivity() {
                     Log.w(TAG, "Could not Log In", e)
                 }
         }
+        //fun changeTitle(titleButton: Button){
+        //    val editTextValue: String = titleButton.getText().toString()
+        //    editTitle.setText(editTextValue)
+        //}
 
 
         // retrieve unique device identifier
@@ -119,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             "This is a test post.",
             0,
             "Anonymous",
-            "Today",
+            FieldValue.serverTimestamp(),
             "0"
         )
 
