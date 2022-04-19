@@ -12,6 +12,8 @@ import android.widget.Toast
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.sql.Date
+import java.sql.Timestamp
 
 
 class CreatePost : AppCompatActivity() {
@@ -40,7 +42,7 @@ class CreatePost : AppCompatActivity() {
         fun saveToDatabase() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
-            var timePostCreated = FieldValue.serverTimestamp()
+            var timePostCreated = Date(System.currentTimeMillis())
 
             val newPost = hashMapOf(
                 "title" to postTitle,
