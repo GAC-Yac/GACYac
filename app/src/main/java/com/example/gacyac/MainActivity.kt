@@ -1,5 +1,8 @@
 package com.example.gacyac
 
+import android.content.ContentValues.TAG
+import android.media.metrics.Event
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
@@ -11,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
-import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.*
 import java.sql.Date
 import java.sql.Timestamp
 
@@ -26,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "testingAuth"
 
+
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var postAdapter: PostAdapter
+    var database = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +102,20 @@ class MainActivity : AppCompatActivity() {
         // retrieve unique device identifier
         android_id = Secure.getString(getApplicationContext().getContentResolver(),
             Secure.ANDROID_ID)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.postRecyclerView.apply{
+            layoutManager = GridLayoutManager(applicationContext, 1)
+            adapter = PostAdapter(postList)
+        }
+
 
         // start the log in process with the unique device identifier
         attemptLogin(android_id)
+        // Displaying Posts
+        //fillWithPosts()
+        val mainActivity = this
 
 
         var addButton: Button = findViewById(R.id.btnAddPost)
@@ -112,9 +131,39 @@ class MainActivity : AppCompatActivity() {
             postList.clear()
         }*/
 
+        EventChangeListener()
+
     }
 
-    private fun fillWithPosts() {
+    private fun EventChangeListener() {
+        database = FirebaseFirestore.getInstance()
+        database.collection("newPosts").orderBy("created").
+            addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        Log.e("ERROR", error.message.toString())
+                        return
+                    }
+
+                    for (dc :DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            postList.add(dc.document.toObject(Post::class.java))
+
+                        }
+                    }
+                }
+
+            })
+    }
+
+
+
+
+
+
+
+
+    /*private fun fillWithPosts() {
         val database = Firebase.firestore
         val docRef = database.collection("posts")
         /*
@@ -133,6 +182,61 @@ class MainActivity : AppCompatActivity() {
         )
 
         postList.add(testPost)
-    }
+    }*/
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//setContentView(R.layout.activity_main)
+//titleButton = findViewById(R.id.post_title)
+
+
+//fun changeTitle(titleButton: Button){
+//    val editTextValue: String = titleButton.getText().toString()
+//    editTitle.setText(editTextValue)
+//}
+
+//titleButton.setOnClickListener {
+//clicking title opens up activity for the post
+//}
