@@ -10,6 +10,6 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
         postBinding.postCreator.text = post.username
         postBinding.tcPlaceholder.text = post.time.toString()
         postBinding.bpPlaceholder.text = post.bonuspoints.toString()
-        postBinding.bpPlaceholder.text = post.id
+        //postBinding.bpPlaceholder.text = post.id
     }
 }

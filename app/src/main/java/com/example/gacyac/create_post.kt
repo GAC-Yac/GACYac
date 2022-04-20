@@ -9,7 +9,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
@@ -43,12 +46,14 @@ class CreatePost : AppCompatActivity() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
             var timePostCreated = Date(System.currentTimeMillis())
+            val tempVar = ""
+
 
             val newPost = hashMapOf(
                 "title" to postTitle,
                 "body" to postBody,
                 "karma" to 0,
-                "created" to timePostCreated
+                "created" to timePostCreated,
             )
 
             database.collection("newPosts")
@@ -67,8 +72,7 @@ class CreatePost : AppCompatActivity() {
                 postBody,
                 0,
                 "Big L",
-                timePostCreated,
-                "0"
+                timePostCreated
             )
         }
 
@@ -76,7 +80,7 @@ class CreatePost : AppCompatActivity() {
             saveToDatabase()
 
             // Creates a local post variable
-            postList.add(create)
+            //postList.add(create)
 
             finish()
         }
