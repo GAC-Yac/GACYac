@@ -14,20 +14,28 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.content.Intent
+import android.provider.Settings.Secure;
+import android.util.LogPrinter
+import java.security.AccessController.getContext
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
     private lateinit var editTitle: EditText
+    private lateinit var android_id: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //titleButton = findViewById(R.id.post_title)
 
+        android_id = Secure.getString(getApplicationContext().getContentResolver(),
+            Secure.ANDROID_ID)
+
         val database = Firebase.firestore
         val user = hashMapOf(
-            "first" to "Big",
-            "last" to "Z",
-            "pulls" to true
+            "device_id" to android_id,
+            "username" to "username"
         )
 
         database.collection("users")
