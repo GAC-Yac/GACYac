@@ -51,8 +51,8 @@ class CreatePost : AppCompatActivity() {
 
             val newPost = hashMapOf(
                 "title" to postTitle,
-                "body" to postBody,
-                "karma" to 0,
+                "text" to postBody,
+                "bonuspoints" to 0,
                 "created" to timePostCreated,
             )
 
