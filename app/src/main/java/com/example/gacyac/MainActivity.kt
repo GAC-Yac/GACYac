@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun EventChangeListener() {
         database = FirebaseFirestore.getInstance()
-        database.collection("newPosts").orderBy("created").
+        database.collection("newPosts").orderBy("time").
             addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if (error != null) {

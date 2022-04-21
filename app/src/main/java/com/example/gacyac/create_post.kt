@@ -53,7 +53,7 @@ class CreatePost : AppCompatActivity() {
                 "title" to postTitle,
                 "text" to postBody,
                 "bonuspoints" to 0,
-                "created" to timePostCreated,
+                "time" to timePostCreated,
             )
 
             database.collection("newPosts")
