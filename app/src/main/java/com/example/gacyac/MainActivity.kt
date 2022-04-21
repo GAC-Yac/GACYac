@@ -1,24 +1,18 @@
 package com.example.gacyac
 
-import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Secure
 import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import android.content.Intent
-import android.provider.Settings.Secure;
-import android.util.LogPrinter
-import java.security.AccessController.getContext
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
     private lateinit var editTitle: EditText
@@ -37,7 +31,9 @@ class MainActivity : AppCompatActivity() {
 
         // randomly creates a username
         fun createRandomUsername(): String{
-            return "HERE's AN EXAMPLE RANDOM USERNAME"
+            val colors = resources.openRawResource(R.raw.colors).bufferedReader().readLines()
+            val nouns = resources.openRawResource(R.raw.nouns).bufferedReader().readLines()
+            return colors.random().toUpperCase() + " " + nouns.random().toUpperCase()
         }
 
         //creates a new user and assigns the user a random username
@@ -50,6 +46,12 @@ class MainActivity : AppCompatActivity() {
                 .document(device_id).set(user)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "document added with username $username")
+                    var newUserToast = Toast.makeText(this, "Welcome New User!", Toast.LENGTH_SHORT)
+                    var newUsernameToast = Toast.makeText(this, "Your random (anonymous) username Is: $username", Toast.LENGTH_LONG)
+                    newUserToast.setGravity(Gravity.TOP, 0, 200)
+                    newUsernameToast.setGravity(Gravity.TOP, 0, 200)
+                    newUserToast.show()
+                    newUsernameToast.show()
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)
@@ -70,6 +72,9 @@ class MainActivity : AppCompatActivity() {
                         Log.d(TAG, "user already exists, username is ${
                             documentReference!!.get("username")
                         }")
+                        var loginToast = Toast.makeText(this, "Welcome back, ${documentReference!!.get("username")}", Toast.LENGTH_LONG)
+                        loginToast.setGravity(Gravity.TOP, 0, 200)
+                        loginToast.show()
                     }
                 }
                 .addOnFailureListener { e ->
