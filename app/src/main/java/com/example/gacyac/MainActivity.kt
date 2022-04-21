@@ -23,37 +23,68 @@ class MainActivity : AppCompatActivity() {
     private lateinit var titleButton: Button
     private lateinit var editTitle: EditText
     private lateinit var android_id: String
+    private lateinit var username: String
+
+    private val TAG = "testingAuth"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //titleButton = findViewById(R.id.post_title)
 
+        val database = Firebase.firestore
+
+        // randomly creates a username
+        fun createRandomUsername(): String{
+            return "HERE's AN EXAMPLE RANDOM USERNAME"
+        }
+
+        //creates a new user and assigns the user a random username
+        fun createNewUser(device_id: String): String {
+            val username = createRandomUsername()
+            val user = hashMapOf(
+                "username" to username
+            )
+            database.collection("users")
+                .document(device_id).set(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "document added with username $username")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding document", e)
+                }
+            return username;
+        }
+
+        // should be called on every app start, either logs in user or creates new user
+        fun attemptLogin(device_id: String){
+            database.collection("users").document(device_id).get()
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "data has been retrieved")
+                    if (documentReference!!.get("username") == null){
+                        createNewUser(device_id)
+                        Log.d(TAG, "new user created")
+                    }
+                    else {
+                        Log.d(TAG, "user already exists, username is ${
+                            documentReference!!.get("username")
+                        }")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Could not Log In", e)
+                }
+        }
+
+
+        // retrieve unique device identifier
         android_id = Secure.getString(getApplicationContext().getContentResolver(),
             Secure.ANDROID_ID)
 
-        val database = Firebase.firestore
-        val user = hashMapOf(
-            "device_id" to android_id,
-            "username" to "username"
-        )
+        // start the log in process with the unique device identifier
+        attemptLogin(android_id)
 
-        database.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-        //fun changeTitle(titleButton: Button){
-        //    val editTextValue: String = titleButton.getText().toString()
-        //    editTitle.setText(editTextValue)
-        //}
-
-        //titleButton.setOnClickListener {
-        //clicking title opens up activity for the post
-        //}
 
         var addButton: Button = findViewById(R.id.btnAddPost)
 
