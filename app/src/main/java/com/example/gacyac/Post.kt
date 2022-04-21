@@ -1,7 +1,7 @@
 package com.example.gacyac
 
 import com.google.firebase.firestore.FieldValue
-import java.sql.Date
+import java.util.Date
 import java.sql.Timestamp
 
 var postList = mutableListOf<Post>()
