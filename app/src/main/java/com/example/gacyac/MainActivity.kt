@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTitle: EditText
     private lateinit var binding: ActivityMainBinding
     private lateinit var postItem: Post
-
     private lateinit var recyclerView : RecyclerView
     private lateinit var postAdapter: PostAdapter
     var database = Firebase.firestore
@@ -42,17 +43,23 @@ class MainActivity : AppCompatActivity() {
 
         // Button Functionality
         var addButton: Button = findViewById(R.id.btnAddPost)
-
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
+       // userDetails.setOnClickListener{
+           // val intent =UserProfile.newIntent(this)
+            //startActivity(intent)
+
+      //  }
 
         var bpButton: Button = findViewById(R.id.btnBonusPoints)
 
-        /*bpButton.setOnClickListener{
-            postList.clear()
-        }*/
+        bpButton.setOnClickListener{
+            val intent = UserProfile.newIntent(this)
+            startActivity(intent)
+           // postList.clear()
+        }
 
         EventChangeListener()
 

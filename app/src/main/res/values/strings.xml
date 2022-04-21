@@ -13,4 +13,5 @@
     <string name="fax">Fax</string>
     <string name="cap">Cap</string>
     <string name="comments_header">Comments</string>
+    <string name="Username">Username</string>
 </resources>
