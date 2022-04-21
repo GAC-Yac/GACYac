@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             adapter = PostAdapter(postList)
         }
 
-
         // Displaying Posts
         //fillWithPosts()
         val mainActivity = this
@@ -78,6 +77,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
 
