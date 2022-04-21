@@ -65,14 +65,13 @@ class MainActivity : AppCompatActivity() {
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "data has been retrieved")
                     if (documentReference!!.get("username") == null){
-                        createNewUser(device_id)
+                        username = createNewUser(device_id)
                         Log.d(TAG, "new user created")
                     }
                     else {
-                        Log.d(TAG, "user already exists, username is ${
-                            documentReference!!.get("username")
-                        }")
-                        var loginToast = Toast.makeText(this, "Welcome back, ${documentReference!!.get("username")}", Toast.LENGTH_LONG)
+                        username = documentReference!!.get("username").toString()
+                        Log.d(TAG, "user already exists, username is $username")
+                        var loginToast = Toast.makeText(this, "Welcome back, $username", Toast.LENGTH_LONG)
                         loginToast.setGravity(Gravity.TOP, 0, 200)
                         loginToast.show()
                     }
