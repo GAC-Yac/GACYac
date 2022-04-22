@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -31,15 +34,19 @@ class MainActivity : AppCompatActivity() {
     //private lateinit var postAdapter: PostAdapter
     private var database = Firebase.firestore
 
+    private lateinit var listView : RecyclerView
+    private lateinit var mLayoutManager: LinearLayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.postRecyclerView.apply{
-            layoutManager = GridLayoutManager(applicationContext, 1)
+            layoutManager = LinearLayoutManager(applicationContext)
             adapter = PostAdapter(postList)
         }
+
 
         // randomly creates a username
         fun createRandomUsername(): String{
@@ -136,9 +143,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
-        database.collection("newPosts").orderBy("time").
+        database.collection("newerPosts").orderBy("postID").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if (error != null) {
@@ -148,7 +156,7 @@ class MainActivity : AppCompatActivity() {
 
                 for (dc :DocumentChange in value?.documentChanges!!) {
                     if (dc.type == DocumentChange.Type.ADDED) {
-                        postList.add(dc.document.toObject(Post::class.java))
+                        postList.add(0, dc.document.toObject(Post::class.java))
 
                     }
                 }
