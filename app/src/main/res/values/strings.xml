@@ -5,4 +5,13 @@
     <string name="post_title">Yac Title</string>
     <string name="post_text">type your yac here</string>
     <string name="save_text">save</string>
+    <string name="post_text_placeholder">Post Text Here</string>
+    <string name="post_creator_placeholder">Post Creator</string>
+    <string name="post_title_placeholder">Post Title</string>
+    <string name="time_created_placeholder">Time Created</string>
+    <string name="bonus_points_placeholder">Bonus Points</string>
+    <string name="fax">Fax</string>
+    <string name="cap">Cap</string>
+    <string name="comments_header">Comments</string>
+    <string name="Username">Username</string>
 </resources>

@@ -10,15 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.DynamicColors.Dark">
         <activity
+            android:name=".PostDetails"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreatePost" >
-        </activity>
+        <activity android:name=".CreatePost" />
     </application>
 
 </manifest>

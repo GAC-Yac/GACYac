@@ -9,8 +9,14 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.sql.Date
+import java.sql.Timestamp
 
 
 class CreatePost : AppCompatActivity() {
@@ -18,6 +24,8 @@ class CreatePost : AppCompatActivity() {
     private lateinit var postTitleText: EditText
     private lateinit var postBodyText: EditText
     private lateinit var postDateButton: Button
+    private lateinit var create: Post
+    lateinit var documentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,36 +38,51 @@ class CreatePost : AppCompatActivity() {
         val database = Firebase.firestore
 
 
-
+        /*
+        var postTitle = postTitleText.getText().toString()
+        var postBody = postBodyText.getText().toString()
+        */
         fun saveToDatabase() {
             var postTitle = postTitleText.getText().toString()
             var postBody = postBodyText.getText().toString()
-
+            var timePostCreated = Date(System.currentTimeMillis())
+            val tempVar = ""
 
 
             val newPost = hashMapOf(
                 "title" to postTitle,
-                "body" to postBody
+                "text" to postBody,
+                "bonuspoints" to 0,
+                "time" to timePostCreated,
             )
 
-            val toastText = Toast.makeText(this, "Sending", Toast.LENGTH_LONG)
-            toastText.show()
-
-            database.collection("posts")
+            database.collection("newPosts")
                 .add(newPost)
                 .addOnSuccessListener { documentReference ->
+                    documentID = documentReference.id
                     Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 }
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
 
-            val newToast = Toast.makeText(this, "DONE", Toast.LENGTH_LONG)
-            newToast.show()
+            // Creates a local Post object, for testing
+            create = Post(
+                postTitle,
+                postBody,
+                0,
+                "Big L",
+                timePostCreated
+            )
         }
 
         saveButton.setOnClickListener {
             saveToDatabase()
+
+            // Creates a local post variable
+            //postList.add(create)
+
+            finish()
         }
     }
 

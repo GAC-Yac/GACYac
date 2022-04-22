@@ -2,9 +2,11 @@
   <library name="Gradle: com.google.firebase:firebase-database-ktx:20.0.4@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e4a4448f757464663d0f506828dc83d1/transformed/firebase-database-ktx-20.0.4/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c9a43865d2428bf5def697138c7e33c5/transformed/firebase-database-ktx-20.0.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c9a43865d2428bf5def697138c7e33c5/transformed/firebase-database-ktx-20.0.4/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c9a43865d2428bf5def697138c7e33c5/transformed/firebase-database-ktx-20.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/da7af9809a86de462ccc7d03bba5eff4/transformed/firebase-database-ktx-20.0.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7a6f808ff55711a48440494441a2c60f/transformed/firebase-database-ktx-20.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7a6f808ff55711a48440494441a2c60f/transformed/firebase-database-ktx-20.0.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7a6f808ff55711a48440494441a2c60f/transformed/firebase-database-ktx-20.0.4/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-database-ktx/20.0.4/4515c9b95e818f17f5c1fddeeed7b55f768524c1/firebase-database-ktx-20.0.4-javadoc.jar!/" />

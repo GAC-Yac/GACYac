@@ -1,7 +1,16 @@
 package com.example.gacyac
 
-data class Post(
-    var title: String,
-    var text: String,
-    var karma: Int
+import com.google.firebase.firestore.FieldValue
+import java.util.Date
+import java.sql.Timestamp
+
+var postList = mutableListOf<Post>()
+
+class Post(
+    var title: String ?= null,
+    var text: String ?= null,
+    var bonuspoints: Int ?= null,
+    var username: String ?= null,
+    var time: Date ?= null
+    //var id: String ?= null
 )
