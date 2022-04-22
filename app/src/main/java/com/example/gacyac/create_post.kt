@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
 
+val maxPostID = 0
 
 class CreatePost : AppCompatActivity() {
     private lateinit var saveButton: Button
@@ -21,6 +23,8 @@ class CreatePost : AppCompatActivity() {
     private lateinit var create: Post
     private lateinit var documentID: String
 
+    var database = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_post)
@@ -29,7 +33,25 @@ class CreatePost : AppCompatActivity() {
         postTitleText = findViewById(R.id.post_title)
         postBodyText = findViewById(R.id.post_text)
         postDateButton = findViewById(R.id.post_date)
-        val database = Firebase.firestore
+
+        val rootRef = FirebaseFirestore.getInstance()
+        val productsRef = rootRef.collection("newerPosts")
+        var count = 0
+        productsRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                task.result?.let {
+                    for (snapshot in it) {
+                        count++
+                    }
+                }
+                print("count: $count")
+            } else {
+                task.exception?.message?.let {
+                    print(it)
+                }
+            }
+        }
+
 
 
         /*
@@ -40,6 +62,10 @@ class CreatePost : AppCompatActivity() {
             val postTitle = postTitleText.getText().toString()
             val postBody = postBodyText.getText().toString()
             val timePostCreated = Date(System.currentTimeMillis())
+            val currentPostingID = database.collection("admin").document("postIDs")
+            currentPostingID.get().toString()
+
+            //database.collection("admin").document("postIDs").get()
             //val tempVar = ""
 
 
@@ -48,9 +74,10 @@ class CreatePost : AppCompatActivity() {
                 "text" to postBody,
                 "bonuspoints" to 0,
                 "time" to timePostCreated,
+                "postID" to count
             )
 
-            database.collection("newPosts")
+            database.collection("newerPosts")
                 .add(newPost)
                 .addOnSuccessListener { documentReference ->
                     documentID = documentReference.id
