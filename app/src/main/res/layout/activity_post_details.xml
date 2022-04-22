@@ -71,10 +71,12 @@
             android:id="@+id/fax_placeholder"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/upvote"
-            android:backgroundTint="@color/cardview_light_background"
-            android:textSize="20sp"
+            android:backgroundTint="@null"
             android:contentDescription="@string/fax"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fax_machine"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -83,13 +85,15 @@
             android:id="@+id/cap_placeholder"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/downvote"
-            android:backgroundTint="@color/cardview_light_background"
+            android:src="@drawable/billed_cap"
+            android:backgroundTint="@null"
             android:contentDescription="@string/cap"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bp_placeholder"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            android:padding="5dp"
+            android:scaleType="fitXY"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
