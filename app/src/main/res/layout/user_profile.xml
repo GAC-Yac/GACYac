@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/username"
         android:layout_width="390dp"
         android:layout_height="59dp"
         android:hint="@string/Username"
@@ -25,13 +25,13 @@
         android:id="@+id/bonusPoints"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:text="Bonus Points: " />
+        android:text="Bonus Points:" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/dateJoinTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date Joined: March 29th, 2022" />
+        android:text="Date Joined:" />
 
 
 </LinearLayout>

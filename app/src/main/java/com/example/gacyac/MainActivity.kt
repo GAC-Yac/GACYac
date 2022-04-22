@@ -17,35 +17,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
+import java.sql.Date
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    //private lateinit var titleButton: Button
-    //private lateinit var editTitle: EditText
     private lateinit var androidID: String
     private lateinit var username: String
 
-    //private val TAG = "testingAuth"
 
 
     private lateinit var binding: ActivityMainBinding
-    //private lateinit var postItem: Post
-    //private lateinit var recyclerView : RecyclerView
-    //private lateinit var postAdapter: PostAdapter
     private var database = Firebase.firestore
-
-    private lateinit var listView : RecyclerView
-    private lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.postRecyclerView.apply{
-            layoutManager = LinearLayoutManager(applicationContext)
-            adapter = PostAdapter(postList)
-        }
+
 
 
         // randomly creates a username
@@ -59,7 +48,9 @@ class MainActivity : AppCompatActivity() {
         fun createNewUser(device_id: String): String {
             val username = createRandomUsername()
             val user = hashMapOf(
-                "username" to username
+                "username" to username,
+                "bonuspoints" to 0,
+                "dateJoined" to Date(System.currentTimeMillis())
             )
             database.collection("users")
                 .document(device_id).set(user)
@@ -99,10 +90,6 @@ class MainActivity : AppCompatActivity() {
                     Log.w(ContentValues.TAG, "Could not Log In", e)
                 }
         }
-        //fun changeTitle(titleButton: Button){
-        //    val editTextValue: String = titleButton.getText().toString()
-        //    editTitle.setText(editTextValue)
-        //}
 
 
         // retrieve unique device identifier
@@ -127,11 +114,6 @@ class MainActivity : AppCompatActivity() {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
-        // userDetails.setOnClickListener{
-        // val intent =UserProfile.newIntent(this)
-        //startActivity(intent)
-
-        //  }
 
         val bpButton: Button = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
@@ -164,37 +146,4 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-
-    /*override fun onStart() {
-        super.onStart()
-    }*/
-
-
-
-
-
-
-
-
-    /*private fun fillWithPosts() {
-        val database = Firebase.firestore
-        val docRef = database.collection("posts")
-        /*
-        for(){
-            // for each post instance in the database, make a Post object and fill it with the contents from each database post
-            val post = Post()
-        }*/
-
-        val testPost = Post(
-            "Test Post",
-            "This is a test post.",
-            0,
-            "Anonymous",
-            Date(System.currentTimeMillis()),
-            "0"
-        )
-
-        postList.add(testPost)
-    }*/
-
 }
