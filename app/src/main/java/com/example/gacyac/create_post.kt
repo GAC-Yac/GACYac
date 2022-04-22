@@ -28,7 +28,6 @@ class CreatePost : AppCompatActivity() {
         saveButton = findViewById(R.id.save_post)
         postTitleText = findViewById(R.id.post_title)
         postBodyText = findViewById(R.id.post_text)
-        postDateButton = findViewById(R.id.post_date)
         val database = Firebase.firestore
 
 
