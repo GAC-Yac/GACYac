@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/activity_main.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/create_post.xml" value="0.5546875" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/post_item.xml" value="0.3671875" />
+        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_profile.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/drawable/default_profile.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/downvote.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
@@ -18,11 +19,6 @@
         <entry key="app/src/main/res/layout/user_profile.xml" value="0.2953114775038257" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/values/randomWords.xml" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/values/randomWords.xml" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/values/rawtextsample.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
