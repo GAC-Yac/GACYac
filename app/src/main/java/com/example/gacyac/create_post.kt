@@ -8,15 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
-import java.sql.Timestamp
 
 
 class CreatePost : AppCompatActivity() {
@@ -25,7 +19,7 @@ class CreatePost : AppCompatActivity() {
     private lateinit var postBodyText: EditText
     private lateinit var postDateButton: Button
     private lateinit var create: Post
-    lateinit var documentID: String
+    private lateinit var documentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +37,10 @@ class CreatePost : AppCompatActivity() {
         var postBody = postBodyText.getText().toString()
         */
         fun saveToDatabase() {
-            var postTitle = postTitleText.getText().toString()
-            var postBody = postBodyText.getText().toString()
-            var timePostCreated = Date(System.currentTimeMillis())
-            val tempVar = ""
+            val postTitle = postTitleText.getText().toString()
+            val postBody = postBodyText.getText().toString()
+            val timePostCreated = Date(System.currentTimeMillis())
+            //val tempVar = ""
 
 
             val newPost = hashMapOf(

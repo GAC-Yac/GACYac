@@ -1,43 +1,35 @@
 package com.example.gacyac
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.media.metrics.Event
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
 import android.view.Gravity
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.firebase.firestore.*
-import java.sql.Date
-import java.sql.Timestamp
-
+import com.google.firebase.firestore.EventListener
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    private lateinit var titleButton: Button
-    private lateinit var editTitle: EditText
-    private lateinit var android_id: String
+    //private lateinit var titleButton: Button
+    //private lateinit var editTitle: EditText
+    private lateinit var androidID: String
     private lateinit var username: String
 
-    private val TAG = "testingAuth"
+    //private val TAG = "testingAuth"
 
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var postItem: Post
-    private lateinit var recyclerView : RecyclerView
-    private lateinit var postAdapter: PostAdapter
-    var database = Firebase.firestore
+    //private lateinit var postItem: Post
+    //private lateinit var recyclerView : RecyclerView
+    //private lateinit var postAdapter: PostAdapter
+    private var database = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,10 +56,10 @@ class MainActivity : AppCompatActivity() {
             )
             database.collection("users")
                 .document(device_id).set(user)
-                .addOnSuccessListener { documentReference ->
+                .addOnSuccessListener {
                     Log.d(ContentValues.TAG, "document added with username $username")
-                    var newUserToast = Toast.makeText(this, "Welcome New User!", Toast.LENGTH_SHORT)
-                    var newUsernameToast = Toast.makeText(this, "Your random (anonymous) username Is: $username", Toast.LENGTH_LONG)
+                    val newUserToast = Toast.makeText(this, "Welcome New User!", Toast.LENGTH_SHORT)
+                    val newUsernameToast = Toast.makeText(this, "Your random (anonymous) username Is: $username", Toast.LENGTH_LONG)
                     newUserToast.setGravity(Gravity.TOP, 0, 200)
                     newUsernameToast.setGravity(Gravity.TOP, 0, 200)
                     newUserToast.show()
@@ -76,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
-            return username;
+            return username
         }
 
         // should be called on every app start, either logs in user or creates new user
@@ -89,9 +81,9 @@ class MainActivity : AppCompatActivity() {
                         Log.d(ContentValues.TAG, "new user created")
                     }
                     else {
-                        username = documentReference!!.get("username").toString()
+                        username = documentReference.get("username").toString()
                         Log.d(ContentValues.TAG, "user already exists, username is $username")
-                        var loginToast = Toast.makeText(this, "Welcome back, $username", Toast.LENGTH_LONG)
+                        val loginToast = Toast.makeText(this, "Welcome back, $username", Toast.LENGTH_LONG)
                         loginToast.setGravity(Gravity.TOP, 0, 200)
                         loginToast.show()
                     }
@@ -107,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // retrieve unique device identifier
-        android_id = Secure.getString(getApplicationContext().getContentResolver(),
+        androidID = Secure.getString(getApplicationContext().getContentResolver(),
             Secure.ANDROID_ID)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -119,13 +111,11 @@ class MainActivity : AppCompatActivity() {
 
 
         // start the log in process with the unique device identifier
-        attemptLogin(android_id)
-        // Displaying Posts
-        //fillWithPosts()
-        val mainActivity = this
+        attemptLogin(androidID)
 
 
-        var addButton: Button = findViewById(R.id.btnAddPost)
+        // button to create a new post
+        val addButton: Button = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
@@ -136,19 +126,17 @@ class MainActivity : AppCompatActivity() {
 
         //  }
 
-        var bpButton: Button = findViewById(R.id.btnBonusPoints)
-
+        val bpButton: Button = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
             val intent = UserProfile.newIntent(this)
             startActivity(intent)
-            // postList.clear()
         }
 
-        EventChangeListener()
+        eventChangeListener()
 
     }
 
-    private fun EventChangeListener() {
+    private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
         database.collection("newPosts").orderBy("time").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -169,9 +157,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
-    }
+    }*/
 
 
 
