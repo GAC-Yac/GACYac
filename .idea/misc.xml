@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/drawable/upvote.xml" value="0.317" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/activity_main.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/create_post.xml" value="0.5546875" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/post_item.xml" value="0.3671875" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_profile.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3565" />
+        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3565" />
         <entry key="app/src/main/res/drawable/default_profile.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/downvote.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
