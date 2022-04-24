@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,8 +25,7 @@ import java.sql.Date
 class MainActivity : AppCompatActivity() {
     private lateinit var androidID: String
     private lateinit var username: String
-
-
+    private lateinit var toolbar : Toolbar
 
     private lateinit var binding: ActivityMainBinding
     private var database = Firebase.firestore
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
 
         // randomly creates a username
@@ -109,16 +111,21 @@ class MainActivity : AppCompatActivity() {
 
 
         // button to create a new post
-        val addButton: Button = findViewById(R.id.btnAddPost)
+        val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
 
-        val bpButton: Button = findViewById(R.id.btnBonusPoints)
+        val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
             val intent = UserProfile.newIntent(this)
             startActivity(intent)
+        }
+
+        val backButton: ImageButton = findViewById(R.id.back_button)
+        backButton.setOnClickListener{
+            finish()
         }
 
         eventChangeListener()

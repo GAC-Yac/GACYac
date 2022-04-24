@@ -14,4 +14,7 @@
     <string name="cap">Cap</string>
     <string name="comments_header">Comments</string>
     <string name="Username">Username</string>
+    <string name="u_up">U up?</string>
+    <string name="backButtonDescription">Back Button to go to previous activity</string>
+    <string name="BPButtonDescription">Profile button</string>
 </resources>

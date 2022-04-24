@@ -15,15 +15,17 @@
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newLogo_round.xml" value="0.368" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newlogo_round.xml" value="0.3565" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newogo.xml" value="0.493" />
+        <entry key="app/src/main/res/drawable/add_post.xml" value="0.212" />
         <entry key="app/src/main/res/drawable/default_profile.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/downvote.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/upvote.xml" value="0.1235" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_post_details.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/create_post.xml" value="0.15" />
         <entry key="app/src/main/res/layout/post.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.4" />
         <entry key="app/src/main/res/layout/user_profile.xml" value="0.2953114775038257" />
       </map>
     </option>
