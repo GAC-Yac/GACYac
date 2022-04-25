@@ -12,4 +12,11 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
         postBinding.bpPlaceholder.text = post.bonuspoints.toString()
         //postBinding.bpPlaceholder.text = post.id
     }
+
+    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
+        itemView.setOnClickListener {
+            event.invoke(getAdapterPosition(), getItemViewType())
+        }
+        return this
+    }
 }

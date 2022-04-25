@@ -14,6 +14,8 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.provider.Settings.Secure
+import android.widget.ImageButton
+import androidx.appcompat.widget.Toolbar
 import java.sql.Date
 
 class UserProfile : AppCompatActivity() {
@@ -21,12 +23,23 @@ class UserProfile : AppCompatActivity() {
     private lateinit var username: TextView
     private lateinit var dateJoin: TextView
     private lateinit var androidID: String
+    private lateinit var UserToolbar: Toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_profile)
+
+        UserToolbar = findViewById(R.id.user_toolbar)
+        setSupportActionBar(UserToolbar)
+
         androidID = Secure.getString(getApplicationContext().getContentResolver(),
             Secure.ANDROID_ID)
         eventChangeListener(androidID)
+
+        val backButton: ImageButton = findViewById(R.id.back_button_user)
+        backButton.setOnClickListener{
+            finish()
+        }
 
     }
 

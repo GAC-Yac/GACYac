@@ -11,11 +11,13 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
             android:name=".PostDetails"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UserProfile"/>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreatePost" />
+        <activity
+            android:name=".CreatePost"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

@@ -111,6 +111,8 @@ class MainActivity : AppCompatActivity() {
 
 
         // button to create a new post
+        // Make a post clickable
+
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)

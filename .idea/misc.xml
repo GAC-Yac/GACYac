@@ -21,12 +21,13 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/upvote.xml" value="0.1235" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="app/src/main/res/layout/activity_post_details.xml" value="0.1125" />
+        <entry key="app/src/main/res/layout/activity_post_details.xml" value="0.2" />
         <entry key="app/src/main/res/layout/create_post.xml" value="0.15" />
         <entry key="app/src/main/res/layout/post.xml" value="0.3651041666666667" />
-        <entry key="app/src/main/res/layout/post_item.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/post_item.xml" value="0.4" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.4" />
-        <entry key="app/src/main/res/layout/user_profile.xml" value="0.2953114775038257" />
+        <entry key="app/src/main/res/layout/user_profile.xml" value="0.6" />
+        <entry key="app/src/main/res/layout/user_toolbar.xml" value="0.2966485507246377" />
       </map>
     </option>
   </component>

@@ -3,11 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    tools:context=".PostDetails"
-    android:layout_margin="20dp">
+    tools:context=".PostDetails">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        />
 
     <TextView
         android:id="@+id/postTitle"
@@ -15,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/post_title_placeholder"
-        android:textColor="@color/White"
+        android:textColor="@color/material_dynamic_primary20"
         android:textSize="20sp"
         android:textStyle="bold"
         android:lines="2"
@@ -27,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/post_text_placeholder"
-        android:textColor="@color/White"
+        android:textColor="@color/material_dynamic_primary30"
         android:textSize="20sp"
         android:lines="4"
         />
@@ -37,7 +41,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/post_creator_placeholder"
-        android:textColor="@color/White"
+        android:textColor="@color/material_dynamic_primary30"
         android:textSize="15sp"
         android:textStyle="bold"
         android:lines="1"
@@ -69,9 +73,9 @@
 
         <ImageButton
             android:id="@+id/fax_placeholder"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@null"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
             android:contentDescription="@string/fax"
             android:padding="5dp"
             android:scaleType="fitXY"
@@ -83,10 +87,10 @@
 
         <ImageButton
             android:id="@+id/cap_placeholder"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/billed_cap"
-            android:backgroundTint="@null"
+            android:background="@null"
             android:contentDescription="@string/cap"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bp_placeholder"
@@ -110,7 +114,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
