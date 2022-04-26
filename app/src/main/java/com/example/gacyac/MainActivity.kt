@@ -149,11 +149,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val menuButton: ImageButton = findViewById(R.id.menu_button)
-        menuButton.setOnClickListener{
-
-        }
-
         eventChangeListener()
 
     }
