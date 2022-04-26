@@ -14,8 +14,8 @@
         android:layout_height="match_parent" >
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
+        android:id="@+id/homeToolbar"
+        layout="@layout/user_toolbar_home"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/homeToolbar"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
@@ -46,8 +46,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:menu="@menu/nav_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true" >
 
