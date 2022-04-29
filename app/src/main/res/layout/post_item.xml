@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/post_title_placeholder"
-                android:textColor="@color/White"
+                android:textColor="@color/material_dynamic_primary20"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:lines="2"
@@ -38,9 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/post_text_placeholder"
-                android:textColor="@color/White"
+                android:textColor="@color/material_dynamic_primary30"
                 android:textSize="20sp"
-                android:lines="4"
+                android:lines="2"
+                android:layout_marginBottom="10dp"
+
             />
             <TextView
                 android:id="@+id/postCreator"
@@ -48,7 +50,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/post_creator_placeholder"
-                android:textColor="@color/White"
+                android:textColor="@color/material_dynamic_primary30"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:lines="1"
@@ -74,16 +76,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/bonus_points_placeholder"
                     android:textSize="12sp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/fax_placeholder"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/fax_placeholder"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/fax_machine"
-                    android:backgroundTint="@null"
+                    android:background="@null"
                     android:textSize="20sp"
                     android:contentDescription="@string/fax"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -94,10 +98,10 @@
 
                 <ImageButton
                     android:id="@+id/cap_placeholder"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/billed_cap"
-                    android:backgroundTint="@null"
+                    android:background="@null"
                     android:contentDescription="@string/cap"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/bp_placeholder"

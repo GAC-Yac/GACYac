@@ -14,4 +14,14 @@
     <string name="cap">Cap</string>
     <string name="comments_header">Comments</string>
     <string name="Username">Username</string>
+    <string name="u_up">U up?</string>
+    <string name="backButtonDescription">Back Button to go to previous activity</string>
+    <string name="menuButtonDescription">Menu Button to go to open up the navigation menu</string>
+    <string name="BPButtonDescription">Profile button</string>
+    <string name="bonus_points_up">Bonus Points:</string>
+    <string name="date_joined_up">Date Joined:</string>
+    <string name="PP_placeholder">Placeholder for profile pictures</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
