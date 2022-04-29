@@ -6,17 +6,23 @@ import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import java.sql.Date
@@ -30,14 +36,32 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var database = Firebase.firestore
 
+    private lateinit var mDrawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.homeToolbar)
         setSupportActionBar(toolbar)
 
+        val actionbar: ActionBar? = supportActionBar
+            actionbar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
+            }
+
+        mDrawerLayout = findViewById(R.id.drawerLayout)
+
+        val  navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+
+            mDrawerLayout.closeDrawers()
+
+            true
+        }
 
         // randomly creates a username
         fun createRandomUsername(): String{
@@ -125,11 +149,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val backButton: ImageButton = findViewById(R.id.back_button)
-        backButton.setOnClickListener{
-            finish()
-        }
-
         eventChangeListener()
 
     }
@@ -155,4 +174,19 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mDrawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+
 }
