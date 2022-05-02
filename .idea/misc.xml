@@ -10,8 +10,10 @@
         <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/nav_header.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_toolbar_home.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable-anydpi/leaderboard.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/back_arrow.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/downvote.xml" value="0.104" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/leaderboard.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/profile_button.xml" value="0.104" />
