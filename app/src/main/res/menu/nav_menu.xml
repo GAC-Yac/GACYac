@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Home">
+    <item android:title="Menu">
         <menu>
             <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_baseline_home_24"
                 android:title="Home" />
+            <item
+                android:id="@+id/nav_leaderboard"
+                android:icon="@drawable/leaderboard"
+                android:title="Leaderboard" />
         </menu>
     </item>
-
 </menu>

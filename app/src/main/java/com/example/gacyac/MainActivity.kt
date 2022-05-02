@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // start the log in process with the unique device identifier
-        attemptLogin(androidID)
+        attemptLogin(androidID+7)
 
 
         // button to create a new post
