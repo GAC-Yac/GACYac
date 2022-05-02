@@ -38,30 +38,25 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawerLayout: DrawerLayout
 
+    val toggle by lazy {
+        ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.homeToolbar)
         setSupportActionBar(toolbar)
 
-        val actionbar: ActionBar? = supportActionBar
-            actionbar?.apply {
-                setDisplayHomeAsUpEnabled(true)
-                setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
-            }
-
         mDrawerLayout = findViewById(R.id.drawerLayout)
 
-        val  navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            menuItem.isChecked = true
+        mDrawerLayout.addDrawerListener(toggle)
 
-            mDrawerLayout.closeDrawers()
 
-            true
-        }
+
 
         // randomly creates a username
         fun createRandomUsername(): String{
@@ -175,17 +170,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                mDrawerLayout.openDrawer(GravityCompat.START)
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
 
 
