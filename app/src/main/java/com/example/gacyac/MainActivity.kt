@@ -31,32 +31,24 @@ import java.sql.Date
 class MainActivity : AppCompatActivity() {
     private lateinit var androidID: String
     private lateinit var username: String
-    private lateinit var toolbar : Toolbar
 
     private lateinit var binding: ActivityMainBinding
     private var database = Firebase.firestore
 
-    private lateinit var mDrawerLayout: DrawerLayout
-
-    val toggle by lazy {
-        ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close)
-    }
+    private  var toolbar : Toolbar? = null
+    private var mDrawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        toolbar = findViewById(R.id.homeToolbar)
+        toolbar = findViewById<Toolbar>(R.id.homeToolbar)
         setSupportActionBar(toolbar)
 
-        mDrawerLayout = findViewById(R.id.drawerLayout)
-
-        mDrawerLayout.addDrawerListener(toggle)
-
-
-
+        initNavigationDrawer()
 
         // randomly creates a username
         fun createRandomUsername(): String{
@@ -148,6 +140,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun initNavigationDrawer() {
+
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            true
+        }
+        val header = navigationView.getHeaderView(0)
+        mDrawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+
+        val actionBarDrawerToggle = object : ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close) {
+
+        }
+
+        mDrawerLayout!!.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+
+    }
+
 
     private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
@@ -169,6 +179,7 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
 
 
 
