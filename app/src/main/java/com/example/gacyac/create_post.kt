@@ -52,12 +52,6 @@ class CreatePost : AppCompatActivity() {
             }
         }
 
-
-
-        /*
-        var postTitle = postTitleText.getText().toString()
-        var postBody = postBodyText.getText().toString()
-        */
         fun saveToDatabase() {
             val postTitle = postTitleText.getText().toString()
             val postBody = postBodyText.getText().toString()

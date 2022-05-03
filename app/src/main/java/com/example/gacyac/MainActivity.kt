@@ -29,6 +29,7 @@ import java.sql.Date
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+
     private lateinit var androidID: String
     private lateinit var username: String
     private lateinit var toolbar : Toolbar
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
                 setDisplayHomeAsUpEnabled(true)
                 setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
             }
+
+
 
         mDrawerLayout = findViewById(R.id.drawerLayout)
 
@@ -135,8 +138,6 @@ class MainActivity : AppCompatActivity() {
 
 
         // button to create a new post
-        // Make a post clickable
-
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)

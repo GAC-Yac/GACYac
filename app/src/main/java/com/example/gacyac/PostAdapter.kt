@@ -19,4 +19,6 @@ class PostAdapter(private val posts: List<Post>): RecyclerView.Adapter<PostViewH
 
     override fun getItemCount(): Int = posts.size
 
+
+    // collection("newererPosts").document(postID).collections("comments").add()
 }
