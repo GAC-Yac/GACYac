@@ -2,8 +2,8 @@
     <string name="app_name">U up?</string>
     <string name="add">Add</string>
     <string name="bonus_points">BP</string>
-    <string name="post_title">Yac Title</string>
-    <string name="post_text">Type your yac here</string>
+    <string name="post_title">Post Title</string>
+    <string name="post_text">Type your post here</string>
     <string name="save_text">Save</string>
     <string name="post_text_placeholder">Post Text Here</string>
     <string name="post_creator_placeholder">Post Creator</string>
@@ -28,4 +28,6 @@
     <string name="karma">Karma:</string>
     <string name="date_joined">Date Joined:</string>
     <string name="nav_username">Username</string>
+    <string name="enter_your_comment">Enter your comment</string>
+    <string name="comments">Comments</string>
 </resources>
