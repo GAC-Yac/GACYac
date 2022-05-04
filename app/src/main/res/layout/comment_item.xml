@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/postCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="15sp">
+
+
+            <TextView
+                android:id="@+id/commentT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comment"
+                android:textColor="@color/material_dynamic_primary30"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+            <TextView
+                android:id="@+id/commentU"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/comment_creator"
+                android:textColor="@color/material_dynamic_primary30"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:lines="1"
+                />
+
+            <TextView
+                android:id="@+id/commentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_created_placeholder"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cap_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

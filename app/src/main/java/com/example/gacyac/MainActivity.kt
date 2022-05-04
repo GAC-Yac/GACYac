@@ -122,10 +122,8 @@ class MainActivity : AppCompatActivity()  {
             adapter = PostAdapter(postList)
         }
 
-
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
-
 
         // button to create a new post
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
@@ -134,6 +132,7 @@ class MainActivity : AppCompatActivity()  {
             startActivity(intent)
         }
 
+        // button to go to the profile screen
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener {
             val intent = UserProfile.newIntent(this)
@@ -169,7 +168,7 @@ class MainActivity : AppCompatActivity()  {
 
     }
 
-
+    // pastes all of the posts from the database onto the MainActivity
     private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
         database.collection("newerPosts").orderBy("postID").
