@@ -130,10 +130,8 @@ class MainActivity : AppCompatActivity()  {
             adapter = PostAdapter(postList)
         }
 
-
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
-
 
         // button to create a new post
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
@@ -298,8 +296,13 @@ class MainActivity : AppCompatActivity()  {
         }
     }
 
-
-
-
-
+    // helper function for sidebar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mDrawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+        }
+    }
 }
