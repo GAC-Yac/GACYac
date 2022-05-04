@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-
+        // side bar item declaration and implementation
         mDrawerLayout = findViewById(R.id.drawerLayout)
 
         val  navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -127,15 +127,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // binds the posts to the MainActivity screen
         binding.postRecyclerView.apply{
             layoutManager = GridLayoutManager(applicationContext, 1)
             adapter = PostAdapter(postList)
         }
 
-
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
-
 
         // button to create a new post
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
@@ -144,6 +143,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // button to go to the profile screen
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
             val intent = UserProfile.newIntent(this)
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    // pastes all of the posts from the database onto the MainActivity
     private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
         database.collection("newerPosts").orderBy("postID").
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
+    // helper function for sidebar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

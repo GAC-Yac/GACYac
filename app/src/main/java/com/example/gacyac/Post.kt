@@ -2,7 +2,6 @@ package com.example.gacyac
 
 import java.util.Date
 
-
 var postList = mutableListOf<Post>()
 
 class Post(

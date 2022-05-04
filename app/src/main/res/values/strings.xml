@@ -26,4 +26,6 @@
     <string name="close">Close</string>
     <string name="enter_your_comment">Enter your comment</string>
     <string name="comments">Comments</string>
+    <string name="comment_creator">Comment Creator</string>
+    <string name="comment">Comment</string>
 </resources>

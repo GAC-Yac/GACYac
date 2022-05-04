@@ -13,7 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
 
-val maxPostID = 0
+//val maxPostID = 0
 
 class CreatePost : AppCompatActivity() {
     private lateinit var saveButton: Button
