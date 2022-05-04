@@ -5,23 +5,23 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
 
-val maxPostID = 0
-
 class CreatePost : AppCompatActivity() {
     private lateinit var saveButton: Button
     private lateinit var postTitleText: EditText
     private lateinit var postBodyText: EditText
-    private lateinit var postDateButton: Button
-    private lateinit var create: Post
-    private lateinit var documentID: String
+
+    private lateinit var androidID: String
+    private lateinit var userID: String
 
     var database = Firebase.firestore
 
@@ -32,10 +32,23 @@ class CreatePost : AppCompatActivity() {
         saveButton = findViewById(R.id.save_post)
         postTitleText = findViewById(R.id.post_title)
         postBodyText = findViewById(R.id.post_text)
-        val database = Firebase.firestore
+
+        androidID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID)
+
+        database.collection("users").document(androidID).get()
+            .addOnSuccessListener { documentReference ->
+                Log.d(ContentValues.TAG, "data has been retrieved")
+                userID = documentReference.get("username").toString()
+                Log.d(ContentValues.TAG, "user already exists")
+
+            }
+            .addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Could not Log In", e)
+            }
+
 
         val rootRef = FirebaseFirestore.getInstance()
-        val productsRef = rootRef.collection("newerPosts")
+        val productsRef = rootRef.collection("newererPosts")
         var count = 0
         productsRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -53,20 +66,10 @@ class CreatePost : AppCompatActivity() {
         }
 
 
-
-        /*
-        var postTitle = postTitleText.getText().toString()
-        var postBody = postBodyText.getText().toString()
-        */
         fun saveToDatabase() {
             val postTitle = postTitleText.getText().toString()
             val postBody = postBodyText.getText().toString()
             val timePostCreated = Date(System.currentTimeMillis())
-            val currentPostingID = database.collection("admin").document("postIDs")
-            currentPostingID.get().toString()
-
-            //database.collection("admin").document("postIDs").get()
-            //val tempVar = ""
 
 
             val newPost = hashMapOf(
@@ -74,35 +77,22 @@ class CreatePost : AppCompatActivity() {
                 "text" to postBody,
                 "bonuspoints" to 0,
                 "time" to timePostCreated,
-                "postID" to count
+                "postID" to count,
+                "userID" to userID
             )
 
-            database.collection("newerPosts")
+            database.collection("newererPosts")
                 .add(newPost)
                 .addOnSuccessListener { documentReference ->
-                    documentID = documentReference.id
                     Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 }
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
-
-            // Creates a local Post object, for testing
-            create = Post(
-                postTitle,
-                postBody,
-                0,
-                "Big L",
-                timePostCreated
-            )
         }
 
         saveButton.setOnClickListener {
             saveToDatabase()
-
-            // Creates a local post variable
-            //postList.add(create)
-
             finish()
         }
     }
