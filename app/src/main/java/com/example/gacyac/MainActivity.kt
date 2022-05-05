@@ -141,6 +141,13 @@ class MainActivity : AppCompatActivity()  {
             val intent = UserProfile.newIntent(this)
             startActivity(intent)
         }
+
+        val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
+        leaderboardButton.setOnClickListener{
+            print("start the leaderboard fragment")
+        }
+
+
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         val headerView : View = navigationView.getHeaderView(0)
         val navUsername : TextView = headerView.findViewById(R.id.navigation_header_username)
