@@ -273,7 +273,7 @@ class MainActivity : AppCompatActivity()  {
 
     private fun eventChangeListener(device_id: String) {
         database = FirebaseFirestore.getInstance()
-        database.collection("newerPosts").orderBy("postID").
+        database.collection("newererPosts").orderBy("postID").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if (error != null) {
