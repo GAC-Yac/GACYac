@@ -15,22 +15,34 @@
 
     <include
         android:id="@+id/homeToolbar"
-        layout="@layout/user_toolbar_home"
+        android:layout="@layout/user_toolbar_home"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="0dp"
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="300dp"
+            app:layout_constraintBottom_toBottomOf="@+id/postRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeToolbar"></FrameLayout>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeToolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/postRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="12dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeToolbar"
+            app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/btnAddPost"
