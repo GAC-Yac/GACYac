@@ -10,15 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".PostDetails"
-            android:screenOrientation="portrait"
+            android:name=".navBarActivity"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"/>
+            android:name=".PostDetails"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UserProfile" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +29,7 @@
         </activity>
         <activity
             android:name=".CreatePost"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

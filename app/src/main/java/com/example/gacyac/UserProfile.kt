@@ -17,6 +17,8 @@ import android.provider.Settings.Secure
 import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
 import java.sql.Date
+import java.text.SimpleDateFormat
+import android.os.Parcelable
 
 class UserProfile : AppCompatActivity() {
     private var database = Firebase.firestore
@@ -56,9 +58,18 @@ class UserProfile : AppCompatActivity() {
                 Log.d(ContentValues.TAG, "data has been retrieved")
                 val usernameChange = documentReference.get("username").toString()
                 Log.d(ContentValues.TAG, "user already exists, username is $username")
+                val timestamp= documentReference.get("dateJoined") as com.google.firebase.Timestamp
+                val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+                val sdf = SimpleDateFormat("MM/dd/yyyy")
+                val netDate = Date(milliseconds)
+                val date = sdf.format(netDate).toString()
+                val format = "Date Joined: $date"
+                Log.d("TAG170", date)
+                dateJoin.setText(format)
                 username.setHint(usernameChange)
 
             }
+
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Could not Log In", e)
             }

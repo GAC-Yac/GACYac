@@ -1,34 +1,30 @@
 package com.example.gacyac
 
 import android.content.ContentValues
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.*
-import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.sql.Date
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var androidID: String
     private lateinit var username: String
 
@@ -49,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         initNavigationDrawer()
-
         // randomly creates a username
         fun createRandomUsername(): String{
             val colors = resources.openRawResource(R.raw.colors).bufferedReader().readLines()
@@ -136,6 +131,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         eventChangeListener()
 
     }
@@ -150,13 +147,26 @@ class MainActivity : AppCompatActivity() {
         mDrawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
 
         val actionBarDrawerToggle = object : ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close) {
-
         }
 
         mDrawerLayout!!.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 
     }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+        when (item.itemId) {
+            R.id.nav_home -> {
+                val intent = UserProfile.newIntent(this)
+                startActivity(intent)
+            }
+           
+        }
+        return true
+    }
+
 
 
     private fun eventChangeListener() {
@@ -178,6 +188,12 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+    companion object {
+
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 
 
