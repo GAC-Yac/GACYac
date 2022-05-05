@@ -17,6 +17,8 @@ import android.provider.Settings.Secure
 import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
 import java.sql.Date
+import java.text.SimpleDateFormat
+import android.os.Parcelable
 
 class UserProfile : AppCompatActivity() {
     private var database = Firebase.firestore
@@ -24,6 +26,7 @@ class UserProfile : AppCompatActivity() {
     private lateinit var dateJoin: TextView
     private lateinit var androidID: String
     private lateinit var UserToolbar: Toolbar
+    private lateinit var bonusPoints: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,15 +53,27 @@ class UserProfile : AppCompatActivity() {
         //var dateJoined = database.collection("users").get().toString()
         username = findViewById(R.id.username)
         dateJoin = findViewById(R.id.dateJoinTextView)
+        bonusPoints = findViewById(R.id.bonusPoints)
         // username.setHint(currentUser)
         database.collection("users").document(device_id).get()
             .addOnSuccessListener { documentReference ->
                 Log.d(ContentValues.TAG, "data has been retrieved")
                 val usernameChange = documentReference.get("username").toString()
                 Log.d(ContentValues.TAG, "user already exists, username is $username")
+                val timestamp= documentReference.get("dateJoined") as com.google.firebase.Timestamp
+                val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+                val sdf = SimpleDateFormat("MM/dd/yyyy")
+                val netDate = Date(milliseconds)
+                val date = sdf.format(netDate).toString()
+                val format = "Date Joined: $date"
+                val bp = documentReference.get("bonuspoints").toString()
+                Log.d("TAG170", date)
+                dateJoin.setText(format)
                 username.setHint(usernameChange)
+                bonusPoints.setText("Bonus Points: $bp")
 
             }
+
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Could not Log In", e)
             }

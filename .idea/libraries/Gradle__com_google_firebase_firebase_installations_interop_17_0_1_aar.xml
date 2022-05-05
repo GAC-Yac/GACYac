@@ -4,9 +4,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0dde164d27a5786a39064f6174e29f2b/transformed/firebase-installations-interop-17.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ce84ba0132730d32d8152b9d6c1c6de9/transformed/firebase-installations-interop-17.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/52841c53999b827b234aab18c2642b10/transformed/firebase-installations-interop-17.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3ad61885c061c4923c5494d86b73a8d2/transformed/firebase-installations-interop-17.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3ad61885c061c4923c5494d86b73a8d2/transformed/firebase-installations-interop-17.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3ad61885c061c4923c5494d86b73a8d2/transformed/firebase-installations-interop-17.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9019f1adcc6995ac2f391d7d7ffe03fe/transformed/firebase-installations-interop-17.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9019f1adcc6995ac2f391d7d7ffe03fe/transformed/firebase-installations-interop-17.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9019f1adcc6995ac2f391d7d7ffe03fe/transformed/firebase-installations-interop-17.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations-interop/17.0.1/a75db5c1d9ed5d246082b53d2a327e9758ce72d7/firebase-installations-interop-17.0.1-javadoc.jar!/" />
