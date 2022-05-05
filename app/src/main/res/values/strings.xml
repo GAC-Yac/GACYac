@@ -24,8 +24,8 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="username">Username</string>
     <string name="home">Home</string>
     <string name="karma">Karma:</string>
     <string name="date_joined">Date Joined:</string>
+    <string name="nav_username">Username</string>
 </resources>

@@ -26,6 +26,7 @@ class UserProfile : AppCompatActivity() {
     private lateinit var dateJoin: TextView
     private lateinit var androidID: String
     private lateinit var UserToolbar: Toolbar
+    private lateinit var bonusPoints: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,7 @@ class UserProfile : AppCompatActivity() {
         //var dateJoined = database.collection("users").get().toString()
         username = findViewById(R.id.username)
         dateJoin = findViewById(R.id.dateJoinTextView)
+        bonusPoints = findViewById(R.id.bonusPoints)
         // username.setHint(currentUser)
         database.collection("users").document(device_id).get()
             .addOnSuccessListener { documentReference ->
@@ -64,9 +66,11 @@ class UserProfile : AppCompatActivity() {
                 val netDate = Date(milliseconds)
                 val date = sdf.format(netDate).toString()
                 val format = "Date Joined: $date"
+                val bp = documentReference.get("bonuspoints").toString()
                 Log.d("TAG170", date)
                 dateJoin.setText(format)
                 username.setHint(usernameChange)
+                bonusPoints.setText("Bonus Points: $bp")
 
             }
 

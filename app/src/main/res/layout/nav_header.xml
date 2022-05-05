@@ -22,11 +22,11 @@
         android:background="@color/LightSteelBlue" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/navigation_header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="@string/username"
+        android:text= "@string/nav_username"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold" />
