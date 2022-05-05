@@ -11,13 +11,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageButton
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gacyac.databinding.ActivityMainBinding
@@ -148,9 +148,28 @@ class MainActivity : AppCompatActivity()  {
         val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
         leaderboardButton.setOnClickListener{
             val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
-            leaderboard_layout.visibility = View.VISIBLE
+            val animationIn = com.google.android.material.R.anim.abc_slide_in_top
+            val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+            if (leaderboard_layout.isVisible){
+                leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                leaderboard_layout.visibility = View.INVISIBLE
+            }
+            else{
+                leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationIn))
+                leaderboard_layout.visibility = View.VISIBLE
+
+            }
         }
 
+        val leaderboardRemovalButton: Button = findViewById(R.id.leaderboardRemoveBtn)
+        leaderboardRemovalButton.setOnClickListener{
+            val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
+            if (leaderboard_layout.isVisible){
+                val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+                leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                leaderboard_layout.visibility = View.INVISIBLE
+            }
+        }
 
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         val headerView : View = navigationView.getHeaderView(0)
