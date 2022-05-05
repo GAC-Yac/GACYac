@@ -10,13 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".navBarActivity"
-            android:exported="false" />
-        <activity
             android:name=".PostDetails"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity android:name=".UserProfile" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

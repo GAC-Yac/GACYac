@@ -140,9 +140,19 @@ class MainActivity : AppCompatActivity()  {
         }
 
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
-        bpButton.setOnClickListener {
-            val intent = UserProfile.newIntent(this)
-            startActivity(intent)
+        bpButton.setOnClickListener{
+            val profile_layout = findViewById<View>(R.id.profile_id) as View
+            val animationIn = com.google.android.material.R.anim.abc_slide_in_top
+            val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+            if (profile_layout.isVisible){
+                profile_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                profile_layout.visibility = View.INVISIBLE
+            }
+            else{
+                profile_layout.startAnimation(AnimationUtils.loadAnimation(this, animationIn))
+                profile_layout.visibility = View.VISIBLE
+
+            }
         }
 
         val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
@@ -168,6 +178,16 @@ class MainActivity : AppCompatActivity()  {
                 val animationOut = com.google.android.material.R.anim.abc_slide_out_top
                 leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
                 leaderboard_layout.visibility = View.INVISIBLE
+            }
+        }
+
+        val profileRemovalButton: Button = findViewById(R.id.profileRmvBtn)
+        profileRemovalButton.setOnClickListener{
+            val profile_layout = findViewById<View>(R.id.profile_id) as View
+            if (profile_layout.isVisible){
+                val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+                profile_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                profile_layout.visibility = View.INVISIBLE
             }
         }
 

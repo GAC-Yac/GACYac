@@ -65,6 +65,72 @@
                     app:layout_constraintTop_toBottomOf="@+id/popup_window_title"
                     app:layout_constraintVertical_bias="1.0" />
 
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:hint="@string/Username"
+                    android:textSize="35sp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintEnd_toStartOf="@+id/popup_window_text"
+                    app:layout_constraintStart_toEndOf="@+id/popup_window_text"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="100dp"
+                        android:layout_marginBottom="50dp"
+                        android:contentDescription="@string/PP_placeholder"
+                        app:layout_constraintBottom_toTopOf="@+id/dateJoinTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/u_uplogo" />
+
+                    <TextView
+                        android:id="@+id/bonusPoints"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/bonus_points_up"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dateJoinTextView" />
+
+                    <TextView
+                        android:id="@+id/dateJoinTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/date_joined_up"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popup_window_title"
                     android:layout_width="match_parent"
@@ -73,7 +139,7 @@
                     android:background="@color/LightSteelBlue"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
-                    android:text="Most Popular Users"
+                    android:text="@string/Username"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -86,7 +152,7 @@
 
 
                 <Button
-                    android:id="@+id/leaderboardRemoveBtn"
+                    android:id="@+id/profileRmvBtn"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
