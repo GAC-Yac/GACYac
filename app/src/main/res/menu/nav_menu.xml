@@ -12,15 +12,6 @@
                 android:title="@string/home"
                 />
 
-            <item
-                android:id="@+id/karma_count"
-                android:icon="@drawable/billed_cap"
-                android:title = "@string/karma" />
-            <item
-                android:id="@+id/date"
-                android:title="@string/date_joined"
-                android:icon="@drawable/calendar_2_"
-                 />
         </menu>
     </item>
 
