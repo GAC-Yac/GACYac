@@ -5,11 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings.Secure
+import android.text.Layout
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -144,7 +147,8 @@ class MainActivity : AppCompatActivity()  {
 
         val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
         leaderboardButton.setOnClickListener{
-            print("start the leaderboard fragment")
+            val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
+            leaderboard_layout.visibility = View.VISIBLE
         }
 
 
