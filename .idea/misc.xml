@@ -23,6 +23,7 @@
         <entry key="app/src/main/res/drawable/downvote.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/leaderboard.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/newlogo_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/profile_button.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/upvote.xml" value="0.1235" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/user_profile.xml" value="0.19377162629757785" />
         <entry key="app/src/main/res/layout/user_toolbar.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/user_toolbar_home.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/user_toolbar_home.xml" value="0.17036132812500004" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.5" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/leaderboard_round.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/newogo.xml" value="0.1" />
