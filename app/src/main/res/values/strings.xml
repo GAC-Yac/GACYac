@@ -28,4 +28,5 @@
     <string name="karma">Karma:</string>
     <string name="date_joined">Date Joined:</string>
     <string name="nav_username">Username</string>
+    <string name="top_5_users">1. user1\n2. user2\n3. user3\n4. user4\n5. user5</string>
 </resources>
