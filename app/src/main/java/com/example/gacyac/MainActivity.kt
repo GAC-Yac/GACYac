@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
 import android.view.Gravity
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
@@ -122,8 +121,10 @@ class MainActivity : AppCompatActivity()  {
             adapter = PostAdapter(postList)
         }
 
+
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
+
 
         // button to create a new post
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
@@ -171,7 +172,7 @@ class MainActivity : AppCompatActivity()  {
     // pastes all of the posts from the database onto the MainActivity
     private fun eventChangeListener() {
         database = FirebaseFirestore.getInstance()
-        database.collection("newerPosts").orderBy("postID").
+        database.collection("newererPosts").orderBy("postID").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if (error != null) {
