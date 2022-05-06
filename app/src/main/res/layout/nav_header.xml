@@ -13,11 +13,11 @@
         android:src="@drawable/profile_button"/>
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/navigation_header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="Testing"
+        android:text="@string/nav_username"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold" />

@@ -9,6 +9,6 @@ class Post(
     var text: String ?= null,
     var bonuspoints: Int ?= null,
     var username: String ?= null,
-    var time: Date ?= null
-    //var id: String ?= null
+    var time: Date ?= null,
+    var userID: String ?= null
 )

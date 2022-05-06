@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -15,24 +16,24 @@ import java.sql.Date
 
 //val maxPostID = 0
 
-class CreatePost : AppCompatActivity() {
-    private lateinit var saveButton: Button
-    private lateinit var postTitleText: EditText
-    private lateinit var postBodyText: EditText
-
-    private lateinit var create: Post
+class CreateComment : AppCompatActivity() {
+    private lateinit var sendButton: Button
+    private lateinit var commentText: EditText
     private lateinit var documentID: String
-    private lateinit var userID: String
+    private lateinit var userID: TextView
+    private lateinit var sendingText: EditText
 
     var database = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_post)
+        setContentView(R.layout.create_comment)
 
-        saveButton = findViewById(R.id.save_post)
-        postTitleText = findViewById(R.id.post_title)
-        postBodyText = findViewById(R.id.post_text)
+        sendButton = findViewById(R.id.send)
+        sendingText = findViewById(R.id.commentText)
+
+        commentText = findViewById(R.id.commentT)
+        userID = findViewById(R.id.commentU)
         val database = Firebase.firestore
 
         val rootRef = FirebaseFirestore.getInstance()
@@ -54,8 +55,7 @@ class CreatePost : AppCompatActivity() {
         }
 
         fun saveToDatabase() {
-            val postTitle = postTitleText.getText().toString()
-            val postBody = postBodyText.getText().toString()
+            val comment = commentText.getText().toString()
             val timePostCreated = Date(System.currentTimeMillis())
             val currentPostingID = database.collection("admin").document("postIDs")
             currentPostingID.get().toString()
@@ -64,17 +64,14 @@ class CreatePost : AppCompatActivity() {
             //val tempVar = ""
 
 
-            val newPost = hashMapOf(
-                "title" to postTitle,
-                "text" to postBody,
-                "bonuspoints" to 0,
-                "time" to timePostCreated,
-                "postID" to count,
-                "userID" to userID
+            val newComment = hashMapOf(
+                "comment" to comment,
+                "user" to userID,
+                "time" to timePostCreated
             )
 
             database.collection("newerPosts")
-                .add(newPost)
+                .add(newComment)
                 .addOnSuccessListener { documentReference ->
                     documentID = documentReference.id
                     Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
@@ -83,19 +80,10 @@ class CreatePost : AppCompatActivity() {
                     Log.w(ContentValues.TAG, "Error adding document", e)
                 }
 
-            // Creates a local Post object, for testing
-            create = Post(
-                postTitle,
-                postBody,
-                0,
-                "Big L",
-                timePostCreated
-            )
         }
 
-        saveButton.setOnClickListener {
+        sendButton.setOnClickListener {
             saveToDatabase()
-            finish()
         }
     }
 
