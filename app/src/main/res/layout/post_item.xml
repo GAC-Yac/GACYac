@@ -111,37 +111,11 @@
                     android:textColor="@color/material_dynamic_primary30"
                     android:textSize="15sp"
                     android:textStyle="bold"
+                    android:clickable="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cap_placeholder" />
 
 
-                <EditText
-                    android:id="@+id/commentText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:hint="@string/enter_your_comment"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/send"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/comments" />
-
-                <ImageView
-                    android:id="@+id/send"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/send"
-                    app:layout_constraintBottom_toBottomOf="@+id/commentText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/commentText" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/commentText">
-
-                </androidx.recyclerview.widget.RecyclerView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
