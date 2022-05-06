@@ -29,7 +29,6 @@
                 android:text="@string/post_title_placeholder"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:lines="2"
                 />
 
             <TextView
@@ -38,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/post_text_placeholder"
                 android:textSize="20sp"
-                android:lines="2"
                 android:layout_marginBottom="10dp"
 
             />

@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import layout.ButtonHighlighterOnTouchListener
 import java.sql.Date
 import java.text.SimpleDateFormat
 
@@ -186,7 +187,9 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+
         val leaderboardRemovalButton: Button = findViewById(R.id.leaderboardRemoveBtn)
+        leaderboardRemovalButton.setOnTouchListener(ButtonHighlighterOnTouchListener(leaderboardRemovalButton))
         leaderboardRemovalButton.setOnClickListener{
             val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
             if (leaderboard_layout.isVisible){
@@ -197,6 +200,7 @@ class MainActivity : AppCompatActivity()  {
         }
 
         val profileRemovalButton: Button = findViewById(R.id.profileRmvBtn)
+        profileRemovalButton.setOnTouchListener(ButtonHighlighterOnTouchListener(profileRemovalButton))
         profileRemovalButton.setOnClickListener{
             val profile_layout = findViewById<View>(R.id.profile_id) as View
             if (profile_layout.isVisible){

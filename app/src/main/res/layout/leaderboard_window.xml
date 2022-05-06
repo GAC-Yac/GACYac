@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
         app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:cardPreventCornerOverlap="false"
@@ -32,7 +32,7 @@
             android:layout_centerInParent="true"
             android:layout_margin="2dp"
             app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="3dp"
+            app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp"
             app:cardPreventCornerOverlap="false">
