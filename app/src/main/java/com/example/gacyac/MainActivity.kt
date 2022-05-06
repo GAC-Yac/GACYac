@@ -22,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -39,6 +40,12 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var bonusPoints: TextView
     private var database = Firebase.firestore
 
+    private lateinit var cap_button: ImageButton
+    private lateinit var fax_button: ImageButton
+    private var processFax = false
+    private var processCap = false
+
+    private lateinit var mDatabaseBonusPoints: DatabaseReference
 
     private  var toolbar : Toolbar? = null
     private var mDrawerLayout: DrawerLayout? = null
