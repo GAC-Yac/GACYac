@@ -43,6 +43,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
+        <include
+            android:id="@+id/leaderboard_id"
+            layout="@layout/leaderboard_window"
+            android:visibility="gone"/>
+        <include
+            android:id="@+id/profile_id"
+            layout="@layout/profile_window"
+            android:visibility="gone"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
