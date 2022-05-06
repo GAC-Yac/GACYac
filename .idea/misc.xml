@@ -8,9 +8,7 @@
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/drawable/newlogo_background.xml" value="0.3565" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/activity_main.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/create_post.xml" value="0.5546875" />
-        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/leaderboard_window.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/post_item.xml" value="0.3671875" />
-        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/profile_window.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_profile.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_toolbar_home.xml" value="0.3140625" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3565" />
@@ -35,6 +33,7 @@
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.33" />
         <entry key="app/src/main/res/layout/post.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/profile_window.xml" value="0.33" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/user_profile.xml" value="0.22" />
         <entry key="app/src/main/res/layout/user_toolbar.xml" value="0.15070921985815602" />
