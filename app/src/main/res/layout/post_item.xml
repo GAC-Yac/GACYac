@@ -89,7 +89,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:scaleType="fitXY"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:clickable="true"/>
 
                 <ImageButton
                     android:id="@+id/cap_placeholder"
@@ -103,7 +104,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:layout_editor_absoluteY="0dp"
                     android:scaleType="fitXY"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:clickable="true"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

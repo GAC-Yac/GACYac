@@ -1,8 +1,6 @@
 package com.example.gacyac
 
 import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings.Secure
 import android.text.Layout
@@ -10,6 +8,9 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -17,11 +18,13 @@ import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gacyac.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.*
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,9 +32,23 @@ import layout.ButtonHighlighterOnTouchListener
 import java.sql.Date
 import java.text.SimpleDateFormat
 
+
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity() {
+
     private lateinit var androidID: String
+    private lateinit var username: String
+    private lateinit var toolbar : Toolbar
+
+    private lateinit var cap_button: ImageButton
+    private lateinit var fax_button: ImageButton
+
+    // Initially false as button hasn't been pressed by user
+    private var processFax = false
+    private var processCap = false
+
+    private lateinit var mDatabaseBonusPoints: DatabaseReference
+
     private lateinit var username: TextView
     private lateinit var username1: String
     private lateinit var binding: ActivityMainBinding
@@ -39,28 +56,40 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var bonusPoints: TextView
     private var database = Firebase.firestore
 
+    private lateinit var mDrawerLayout: DrawerLayout
 
     private  var toolbar : Toolbar? = null
     private var mDrawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-
-
-
-
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-       toolbar = findViewById<Toolbar>(R.id.homeToolbar)
+        toolbar = findViewById(R.id.homeToolbar)
         setSupportActionBar(toolbar)
 
-       initNavigationDrawer()
+        val actionbar: ActionBar? = supportActionBar
+            actionbar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
+            }
+
+
+        // side bar item declaration and implementation
+        mDrawerLayout = findViewById(R.id.drawerLayout)
+
+        val  navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+
+            mDrawerLayout.closeDrawers()
+
+            true
+        }
+
         // randomly creates a username
-        fun createRandomUsername(): String {
+        fun createRandomUsername(): String{
             val colors = resources.openRawResource(R.raw.colors).bufferedReader().readLines()
             val nouns = resources.openRawResource(R.raw.nouns).bufferedReader().readLines()
             return colors.random().toUpperCase() + " " + nouns.random().toUpperCase()
@@ -79,11 +108,7 @@ class MainActivity : AppCompatActivity()  {
                 .addOnSuccessListener {
                     Log.d(ContentValues.TAG, "document added with username $username")
                     val newUserToast = Toast.makeText(this, "Welcome New User!", Toast.LENGTH_SHORT)
-                    val newUsernameToast = Toast.makeText(
-                        this,
-                        "Your random (anonymous) username Is: $username",
-                        Toast.LENGTH_LONG
-                    )
+                    val newUsernameToast = Toast.makeText(this, "Your random (anonymous) username Is: $username", Toast.LENGTH_LONG)
                     newUserToast.setGravity(Gravity.TOP, 0, 200)
                     newUsernameToast.setGravity(Gravity.TOP, 0, 200)
                     newUserToast.show()
@@ -96,13 +121,20 @@ class MainActivity : AppCompatActivity()  {
         }
 
         // should be called on every app start, either logs in user or creates new user
-        fun attemptLogin(device_id: String) {
+        fun attemptLogin(device_id: String){
             database.collection("users").document(device_id).get()
                 .addOnSuccessListener { documentReference ->
                     Log.d(ContentValues.TAG, "data has been retrieved")
+                    if (documentReference!!.get("username") == null){
+                        username = createNewUser(device_id)
                     if (documentReference!!.get("username") == null) {
                         username1 = createNewUser(device_id)
                         Log.d(ContentValues.TAG, "new user created")
+                    }
+                    else {
+                        username = documentReference.get("username").toString()
+                        Log.d(ContentValues.TAG, "user already exists, username is $username")
+                        val loginToast = Toast.makeText(this, "Welcome back, $username", Toast.LENGTH_LONG)
                     } else {
                         username1 = documentReference.get("username").toString()
                         val loginToast =
@@ -118,36 +150,65 @@ class MainActivity : AppCompatActivity()  {
 
 
         // retrieve unique device identifier
-        androidID = Secure.getString(
-            getApplicationContext().getContentResolver(),
-            Secure.ANDROID_ID
-        )
+        androidID = Secure.getString(getApplicationContext().getContentResolver(),
+            Secure.ANDROID_ID)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.postRecyclerView.apply {
+        // binds the posts to the MainActivity screen
+        binding.postRecyclerView.apply{
             layoutManager = GridLayoutManager(applicationContext, 1)
             adapter = PostAdapter(postList)
         }
 
-
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
 
-
         // button to create a new post
-        // Make a post clickable
-
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
             startActivity(intent)
         }
 
+        // button to go to the profile screen
         val profile_layout = findViewById<View>(R.id.profile_id) as View
         val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
 
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
+        bpButton.setOnClickListener{
+            val intent = UserProfile.newIntent(this)
+            startActivity(intent)
+        }
+
+        mDatabaseBonusPoints = FirebaseDatabase.getInstance().getReference().child("bonuspoints")
+        mDatabaseBonusPoints.keepSynced(true)
+
+        cap_button = findViewById(R.id.cap_placeholder)
+        fax_button = findViewById(R.id.fax_placeholder)
+
+        cap_button.setOnClickListener{
+
+        }
+        fax_button.setOnClickListener{
+            processFax = true
+            if(processFax == true){
+                mDatabaseBonusPoints.addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for (child in dataSnapshot.children) {
+                                val postId = child.key //Post Id
+                            }
+                        }
+                        else{
+
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                    }
+                })
         bpButton.setOnClickListener{
             val animationIn = com.google.android.material.R.anim.abc_slide_in_top
             val animationOut = com.google.android.material.R.anim.abc_slide_out_top
@@ -218,26 +279,20 @@ class MainActivity : AppCompatActivity()  {
                 val grabUserName = documentReference.get("username").toString()
                 navUsername.text = grabUserName
             }
+        }
 
+        eventChangeListener()
         eventChangeListener(androidID)
     }
 
 
-    private fun initNavigationDrawer() {
 
-        val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            true
-        }
-        val header = navigationView.getHeaderView(0)
-        mDrawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+    }
 
-        val actionBarDrawerToggle = object : ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close) {
-        }
 
-        mDrawerLayout!!.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
 
+    // pastes all of the posts from the database onto the MainActivity
+    private fun eventChangeListener() {
     }
 
     private fun getProfileInformation(device_id: String){
@@ -292,14 +347,18 @@ class MainActivity : AppCompatActivity()  {
         })
         getProfileInformation(device_id)
     }
-    companion object {
 
-        fun newIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+    // helper function for sidebar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mDrawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
-
-
 
 
 
