@@ -26,13 +26,18 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Date
+import java.text.SimpleDateFormat
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity()  {
     private lateinit var androidID: String
-    private lateinit var username: String
+    private lateinit var username: TextView
+    private lateinit var username1: String
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dateJoin: TextView
+    private lateinit var bonusPoints: TextView
     private var database = Firebase.firestore
+
 
     private  var toolbar : Toolbar? = null
     private var mDrawerLayout: DrawerLayout? = null
@@ -95,13 +100,12 @@ class MainActivity : AppCompatActivity()  {
                 .addOnSuccessListener { documentReference ->
                     Log.d(ContentValues.TAG, "data has been retrieved")
                     if (documentReference!!.get("username") == null) {
-                        username = createNewUser(device_id)
+                        username1 = createNewUser(device_id)
                         Log.d(ContentValues.TAG, "new user created")
                     } else {
-                        username = documentReference.get("username").toString()
-                        Log.d(ContentValues.TAG, "user already exists, username is $username")
+                        username1 = documentReference.get("username").toString()
                         val loginToast =
-                            Toast.makeText(this, "Welcome back, $username", Toast.LENGTH_LONG)
+                            Toast.makeText(this, "Welcome back, $username1", Toast.LENGTH_LONG)
                         loginToast.setGravity(Gravity.TOP, 0, 200)
                         loginToast.show()
                     }
@@ -139,9 +143,11 @@ class MainActivity : AppCompatActivity()  {
             startActivity(intent)
         }
 
+        val profile_layout = findViewById<View>(R.id.profile_id) as View
+        val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
+
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
-            val profile_layout = findViewById<View>(R.id.profile_id) as View
             val animationIn = com.google.android.material.R.anim.abc_slide_in_top
             val animationOut = com.google.android.material.R.anim.abc_slide_out_top
             if (profile_layout.isVisible){
@@ -149,6 +155,11 @@ class MainActivity : AppCompatActivity()  {
                 profile_layout.visibility = View.INVISIBLE
             }
             else{
+                if (leaderboard_layout.isVisible){
+                    val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+                    leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                    leaderboard_layout.visibility = View.INVISIBLE
+                }
                 profile_layout.startAnimation(AnimationUtils.loadAnimation(this, animationIn))
                 profile_layout.visibility = View.VISIBLE
 
@@ -157,7 +168,6 @@ class MainActivity : AppCompatActivity()  {
 
         val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
         leaderboardButton.setOnClickListener{
-            val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
             val animationIn = com.google.android.material.R.anim.abc_slide_in_top
             val animationOut = com.google.android.material.R.anim.abc_slide_out_top
             if (leaderboard_layout.isVisible){
@@ -165,6 +175,11 @@ class MainActivity : AppCompatActivity()  {
                 leaderboard_layout.visibility = View.INVISIBLE
             }
             else{
+                if (profile_layout.isVisible){
+                    val animationOut = com.google.android.material.R.anim.abc_slide_out_top
+                    profile_layout.startAnimation(AnimationUtils.loadAnimation(this, animationOut))
+                    profile_layout.visibility = View.INVISIBLE
+                }
                 leaderboard_layout.startAnimation(AnimationUtils.loadAnimation(this, animationIn))
                 leaderboard_layout.visibility = View.VISIBLE
 
@@ -200,7 +215,7 @@ class MainActivity : AppCompatActivity()  {
                 navUsername.text = grabUserName
             }
 
-        eventChangeListener()
+        eventChangeListener(androidID)
     }
 
 
@@ -221,8 +236,38 @@ class MainActivity : AppCompatActivity()  {
 
     }
 
+    private fun getProfileInformation(device_id: String){
+        database = FirebaseFirestore.getInstance()
+        username = findViewById(R.id.username)
+        dateJoin = findViewById(R.id.dateJoinTextView)
+        bonusPoints = findViewById(R.id.bonusPoints)
+        // username.setHint(currentUser)
+        database.collection("users").document(device_id).get()
+            .addOnSuccessListener { documentReference ->
+                Log.d(ContentValues.TAG, "data has been retrieved")
+                val usernameChange = documentReference.get("username").toString()
+                Log.d(ContentValues.TAG, "user already exists, username is $username")
+                val timestamp= documentReference.get("dateJoined") as com.google.firebase.Timestamp
+                val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+                val sdf = SimpleDateFormat("MM/dd/yyyy")
+                val netDate = Date(milliseconds)
+                val date = sdf.format(netDate).toString()
+                val format = "Date Joined: $date"
+                val bp = documentReference.get("bonuspoints").toString()
+                Log.d("TAG170", date)
+                dateJoin.setText(format)
+                username.setText(usernameChange)
+                bonusPoints.setText("Bonus Points: $bp")
 
-    private fun eventChangeListener() {
+            }
+
+            .addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Could not Log In", e)
+            }
+    }
+
+
+    private fun eventChangeListener(device_id: String) {
         database = FirebaseFirestore.getInstance()
         database.collection("newerPosts").orderBy("postID").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -241,6 +286,7 @@ class MainActivity : AppCompatActivity()  {
             }
 
         })
+        getProfileInformation(device_id)
     }
     companion object {
 

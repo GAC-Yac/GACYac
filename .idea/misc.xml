@@ -30,11 +30,11 @@
         <entry key="app/src/main/res/layout/activity_nav_bar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_post_details.xml" value="0.33" />
         <entry key="app/src/main/res/layout/create_post.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/leaderboard_window.xml" value="0.2672088623046874" />
+        <entry key="app/src/main/res/layout/leaderboard_window.xml" value="0.40338589716616857" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.33" />
         <entry key="app/src/main/res/layout/post.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/profile_window.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/profile_window.xml" value="0.2651779174804688" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/user_profile.xml" value="0.19377162629757785" />
         <entry key="app/src/main/res/layout/user_toolbar.xml" value="0.15070921985815602" />

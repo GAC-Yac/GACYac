@@ -65,20 +65,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/popup_window_title"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:hint="@string/Username"
-                    android:textSize="35sp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                    app:layout_constraintEnd_toStartOf="@+id/popup_window_text"
-                    app:layout_constraintStart_toEndOf="@+id/popup_window_text"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
@@ -90,13 +76,12 @@
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_height="175dp"
                         android:layout_marginStart="100dp"
                         android:layout_marginTop="50dp"
+                        android:paddingBottom="15dp"
                         android:layout_marginEnd="100dp"
-                        android:layout_marginBottom="50dp"
                         android:contentDescription="@string/PP_placeholder"
-                        app:layout_constraintBottom_toTopOf="@+id/dateJoinTextView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -108,10 +93,13 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
                         android:text="@string/bonus_points_up"
-                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:textSize="25sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dateJoinTextView" />
@@ -122,10 +110,13 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
                         android:text="@string/date_joined_up"
-                        android:textSize="20sp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -139,7 +130,6 @@
                     android:background="@color/LightSteelBlue"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
-                    android:text="@string/Username"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -148,6 +138,22 @@
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:hint="@string/Username"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/popup_window_text"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/popup_window_text"
                     app:layout_constraintTop_toTopOf="parent" />
 
 

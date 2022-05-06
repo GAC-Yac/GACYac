@@ -46,44 +46,54 @@
                 android:minHeight="170dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/popup_window_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
-                    android:text="Text"
-                    android:textAlignment="center"
-                    android:textColor="@color/AliceBlue"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/popup_window_title"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popup_window_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:autoSizeMaxTextSize="@dimen/cardview_compat_inset_shadow"
                     android:background="@color/LightSteelBlue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/leaderboard_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
                     android:text="Most Popular Users"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="22dp"
+                    android:textSize="24dp"
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/popup_window_text"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/popup_window_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Username"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
 
                 <Button
                     android:id="@+id/leaderboardRemoveBtn"
