@@ -131,10 +131,14 @@ class MainActivity : AppCompatActivity()  {
             adapter = PostAdapter(postList)
         }
 
+
         // start the log in process with the unique device identifier
         attemptLogin(androidID)
 
+
         // button to create a new post
+        // Make a post clickable
+
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
