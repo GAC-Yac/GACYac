@@ -38,5 +38,12 @@
         android:layout_marginTop="20dp"
         android:text="@string/current_post_count"/>
 
+    <TextView
+        android:id="@+id/navigation_header_last_refreshed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/last_refreshed"/>
+
 
 </LinearLayout>

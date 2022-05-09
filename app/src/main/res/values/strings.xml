@@ -35,5 +35,6 @@
     <string name="leader5">user5</string>
     <string name="top_5_users">most popular users</string>
 
-    <string name="current_post_count">Number of Current Posts</string>
+    <string name="current_post_count">Number of Current Posts:</string>
+    <string name="last_refreshed">Last Refreshed:</string>
 </resources>

@@ -26,6 +26,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import layout.ButtonHighlighterOnTouchListener
+import org.w3c.dom.Text
 import java.sql.Date
 import java.text.SimpleDateFormat
 
@@ -324,26 +325,16 @@ class MainActivity : AppCompatActivity()  {
                 navUsername.text = grabUserName
             }
 
-        val rootRef = FirebaseFirestore.getInstance()
-        val productsRef = rootRef.collection("newererPosts")
-        var count = 0
-        productsRef.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                task.result?.let {
-                    for (snapshot in it) {
-                        count++
-                    }
-                }
-                print("count: $count")
-            } else {
-                task.exception?.message?.let {
-                    print(it)
-                }
-            }
+        database.collection("newererPosts").orderBy("postID", Query.Direction.DESCENDING).limit(1).get().addOnSuccessListener { documents ->
+            currentPostCount = headerView.findViewById(R.id.navigation_header_current_post_count)
+            currentPostCount.setText("Current Post Count: ${documents.documents.get(0).get("postID")}")
         }
 
-        currentPostCount = headerView.findViewById(R.id.navigation_header_current_post_count)
-        currentPostCount.setText("Current Post Count: $count")
+        val lastRefreshed : TextView = headerView.findViewById(R.id.navigation_header_last_refreshed)
+        val getCurrentTime = Date(System.currentTimeMillis())
+
+        lastRefreshed.setText("Last Refreshed: $getCurrentTime")
+
     }
 
     companion object {
