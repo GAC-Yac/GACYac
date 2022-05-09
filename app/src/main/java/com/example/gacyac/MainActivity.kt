@@ -306,10 +306,15 @@ class MainActivity : AppCompatActivity()  {
                 topUsers = findViewById(R.id.topUsers)
                 topUsers.setText("" +
                         "1. ${documents.documents.get(0).get("username")}\n" +
+                        "--->(Bonus Points: ${documents.documents.get(0).get("bonuspoints")})\n" +
                         "2. ${documents.documents.get(1).get("username")}\n" +
+                        "--->(Bonus Points: ${documents.documents.get(1).get("bonuspoints")})\n" +
                         "3. ${documents.documents.get(2).get("username")}\n" +
+                        "--->(Bonus Points: ${documents.documents.get(2).get("bonuspoints")})\n" +
                         "4. ${documents.documents.get(3).get("username")}\n" +
-                        "5. ${documents.documents.get(4).get("username")}")
+                        "--->(Bonus Points: ${documents.documents.get(3).get("bonuspoints")})\n" +
+                        "5. ${documents.documents.get(4).get("username")}\n" +
+                        "--->(Bonus Points: ${documents.documents.get(4).get("bonuspoints")})")
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
