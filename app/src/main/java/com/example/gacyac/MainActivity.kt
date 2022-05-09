@@ -137,8 +137,6 @@ class MainActivity : AppCompatActivity()  {
 
 
         // button to create a new post
-        // Make a post clickable
-
         val addButton: ImageButton = findViewById(R.id.btnAddPost)
         addButton.setOnClickListener {
             val intent = CreatePost.newIntent(this)
@@ -328,6 +326,16 @@ class MainActivity : AppCompatActivity()  {
             return Intent(context, MainActivity::class.java)
         }
     }
+
+    // helper function for sidebar
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mDrawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+        }
+    }*/
 
 
 
