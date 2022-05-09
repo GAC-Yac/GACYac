@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var username1: String
     private lateinit var binding: ActivityMainBinding
     private lateinit var dateJoin: TextView
+    private lateinit var topUsers: TextView
     private lateinit var bonusPoints: TextView
     private var database = Firebase.firestore
 
@@ -264,7 +265,6 @@ class MainActivity : AppCompatActivity()  {
                 bonusPoints.setText("Bonus Points: $bp")
 
             }
-
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Could not Log In", e)
             }
@@ -291,7 +291,32 @@ class MainActivity : AppCompatActivity()  {
 
         })
         getProfileInformation(device_id)
+        getLeaderboardInformation()
     }
+
+    private fun getLeaderboardInformation() {
+        database = FirebaseFirestore.getInstance()
+
+        database.collection("users")
+            .orderBy("bonuspoints", Query.Direction.DESCENDING).limit(5)
+            .get()
+            .addOnSuccessListener { documents ->
+                Log.d("LUKEleaderboard2", "LUKEleaderboard2")
+                Log.d("documents: ", "${documents.documents.toString()}")
+                topUsers = findViewById(R.id.topUsers)
+                topUsers.setText("" +
+                        "1. ${documents.documents.get(0).get("username")}\n" +
+                        "2. ${documents.documents.get(1).get("username")}\n" +
+                        "3. ${documents.documents.get(2).get("username")}\n" +
+                        "4. ${documents.documents.get(3).get("username")}\n" +
+                        "5. ${documents.documents.get(4).get("username")}")
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
+                Log.i("LUKEleaderboardDEBUG",exception.toString())
+            }
+    }
+
     companion object {
 
         fun newIntent(context: Context): Intent {
