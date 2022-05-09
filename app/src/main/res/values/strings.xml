@@ -36,4 +36,6 @@
     <string name="top_5_users">most popular users</string>
     <string name="comment_text_here">Comment text here</string>
     <string name="comment_creator">Comment Creator</string>
+    <string name="send_button">Send Button</string>
+    <string name="comment">Comment</string>
 </resources>
