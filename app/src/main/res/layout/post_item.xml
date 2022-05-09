@@ -117,6 +117,21 @@
                     android:visibility="gone"
                     tools:ignore="MissingConstraints" />
 
+                <TextView
+                    android:id="@+id/postCreatorID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/postCreatorID"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/androidIdentifierPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/androidIdentifierStuff"
+                    tools:ignore="MissingConstraints" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

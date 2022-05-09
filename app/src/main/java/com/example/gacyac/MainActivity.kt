@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity()  {
             val user = hashMapOf(
                 "username" to username,
                 "bonuspoints" to 0,
-                "dateJoined" to Date(System.currentTimeMillis())
+                "dateJoined" to Date(System.currentTimeMillis()),
+                "AndroidIdentifier" to androidID
             )
             database.collection("users")
                 .document(device_id).set(user)
@@ -246,7 +247,7 @@ class MainActivity : AppCompatActivity()  {
                 Log.d(ContentValues.TAG, "data has been retrieved")
                 val usernameChange = documentReference.get("username").toString()
                 Log.d(ContentValues.TAG, "user already exists, username is $username")
-                val timestamp= documentReference.get("dateJoined") as com.google.firebase.Timestamp
+                val timestamp = documentReference.get("dateJoined") as com.google.firebase.Timestamp
                 val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
                 val sdf = SimpleDateFormat("MM/dd/yyyy")
                 val netDate = Date(milliseconds)
@@ -285,7 +286,7 @@ class MainActivity : AppCompatActivity()  {
 
         })
         getProfileInformation(device_id)
-        getLeaderboardInformation()
+        //getLeaderboardInformation()
         getNavBarInfo()
     }
 

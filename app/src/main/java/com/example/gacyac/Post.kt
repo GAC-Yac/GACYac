@@ -12,5 +12,6 @@ class Post(
     var username: String ?= null,
     var time: Date ?= null,
     var userID: String ?= null,
-    var postID: String ?= null
+    var postID: String ?= null,
+    var androidID: String ?= null
 )

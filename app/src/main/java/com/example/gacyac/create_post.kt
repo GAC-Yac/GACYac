@@ -35,6 +35,8 @@ class CreatePost : AppCompatActivity() {
 
         androidID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID)
 
+        //var postCreatorID = findViewById(R.id.postCreatorID)
+
         database.collection("users").document(androidID).get()
             .addOnSuccessListener { documentReference ->
                 Log.d(ContentValues.TAG, "data has been retrieved")
@@ -45,6 +47,8 @@ class CreatePost : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Could not Log In", e)
             }
+
+
 
 
         val rootRef = FirebaseFirestore.getInstance()
@@ -77,7 +81,8 @@ class CreatePost : AppCompatActivity() {
                 "bonuspoints" to 0,
                 "time" to timePostCreated,
                 "postID" to count,
-                "userID" to userID
+                "userID" to userID,
+                "AndroidID" to androidID
             )
 
             database.collection("newererPosts")

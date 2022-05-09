@@ -27,6 +27,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
         postBinding.bpPlaceholder.text = post.bonuspoints.toString()
         postBinding.postCreator.text = post.userID
         postBinding.postID.text = post.postID
+        postBinding.androidIdentifierPost.text = post.androidID.toString()
 
         val faxButton: ImageButton = postBinding.faxPlaceholder
         faxButton.setOnTouchListener(ButtonHighlighterOnTouchListener2(faxButton))
@@ -53,7 +54,8 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
-            //addKarma(-1)
+            Log.d("POST_BONUSPOINTS", post.androidID.toString())
+            addKarma(-1, post.androidID.toString())
         }
     }
 
@@ -61,16 +63,20 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
 
 
 
+    private fun addKarma(addedKarma: Int, userID1: String) {
+        Log.d("amberDONKEY", "$userID1")
+        database.collection("users").document(userID1).get()
+            .addOnSuccessListener { documentReference ->
 
+                val bp = documentReference.get("bonuspoints") as Int
+                changeUserKarma(addedKarma+bp, userID1)
 
+            }
+            .addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Could not Log In", e)
+            }
+    }
 
-
-
-
-
-
-
-    /*
     private fun changeUserKarma(newKarma: Int, userID: String) {
         val updating = database.collection("users").document(postBinding.postCreator.text.toString())
         updating.update("bonuspoints", newKarma).addOnSuccessListener {
@@ -81,17 +87,6 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             }
     }
 
-    private fun addKarma(addedKarma: Int, userID: String) {
-        Log.d("amberDONKEY", "$userID")
-        database.collection("users").document(userID).get()
-            .addOnSuccessListener { documentReference ->
-                changeUserKarma(documentReference.get("bonuspoints") as Int + addedKarma, userID)
-            }
-            .addOnFailureListener { e ->
-                Log.w(ContentValues.TAG, "Could not Log In", e)
-            }
-    }
-    */
 
     private fun saveToDatabase(newBonusPoints: Int) {
         //Log.d("timeDEBUGLUKE", postBinding.postID.text.toString())
