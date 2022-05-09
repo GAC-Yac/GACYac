@@ -77,11 +77,6 @@ class UserProfile : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Could not Log In", e)
             }
-
-
-        // TODO: Luke, get this working with the user profiles. If needed, reference eventChangeListener in MainActivity.kt
-
-        //currentUser.toObject(User::class.java)
     }
 
 

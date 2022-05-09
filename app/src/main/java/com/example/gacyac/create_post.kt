@@ -49,7 +49,7 @@ class CreatePost : AppCompatActivity() {
 
         val rootRef = FirebaseFirestore.getInstance()
         val productsRef = rootRef.collection("newererPosts")
-        var count = 0
+        var count = 1
         productsRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 task.result?.let {
