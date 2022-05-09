@@ -49,15 +49,14 @@ class CreatePost : AppCompatActivity() {
 
         val rootRef = FirebaseFirestore.getInstance()
         val productsRef = rootRef.collection("newererPosts")
-        var count = 0
+        var count = "1"
         productsRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 task.result?.let {
                     for (snapshot in it) {
-                        count++
+                        count = (Integer.parseInt(count) + 1).toString()
                     }
                 }
-                print("count: $count")
             } else {
                 task.exception?.message?.let {
                     print(it)
@@ -82,7 +81,7 @@ class CreatePost : AppCompatActivity() {
             )
 
             database.collection("newererPosts")
-                .document(timePostCreated.toString()).set(newPost)
+                .document(newPost.get("postID").toString()).set(newPost)
                 .addOnSuccessListener { documentReference ->
                     Log.d(ContentValues.TAG, "DocumentSnapshot added with ID")
                 }
