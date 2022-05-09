@@ -34,4 +34,6 @@
     <string name="leader4">user4</string>
     <string name="leader5">user5</string>
     <string name="top_5_users">most popular users</string>
+
+    <string name="current_post_count">Number of Current Posts</string>
 </resources>

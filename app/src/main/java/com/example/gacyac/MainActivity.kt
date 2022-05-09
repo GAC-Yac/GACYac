@@ -38,10 +38,12 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var dateJoin: TextView
     private lateinit var topUsers: TextView
     private lateinit var bonusPoints: TextView
+
+    private lateinit var currentPostCount: TextView
     private var database = Firebase.firestore
 
 
-    private  var toolbar : Toolbar? = null
+    private var toolbar : Toolbar? = null
     private var mDrawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -209,15 +211,6 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        val headerView : View = navigationView.getHeaderView(0)
-        val navUsername : TextView = headerView.findViewById(R.id.navigation_header_username)
-        database.collection("users").document(androidID).get()
-            .addOnSuccessListener { documentReference ->
-                val grabUserName = documentReference.get("username").toString()
-                navUsername.text = grabUserName
-            }
-
         eventChangeListener(androidID)
     }
 
@@ -290,6 +283,7 @@ class MainActivity : AppCompatActivity()  {
         })
         getProfileInformation(device_id)
         getLeaderboardInformation()
+        getNavBarInfo()
     }
 
     private fun getLeaderboardInformation() {
@@ -318,6 +312,38 @@ class MainActivity : AppCompatActivity()  {
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
                 Log.i("LUKEleaderboardDEBUG",exception.toString())
             }
+    }
+
+    private fun getNavBarInfo() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val headerView : View = navigationView.getHeaderView(0)
+        val navUsername : TextView = headerView.findViewById(R.id.navigation_header_username)
+        database.collection("users").document(androidID).get()
+            .addOnSuccessListener { documentReference ->
+                val grabUserName = documentReference.get("username").toString()
+                navUsername.text = grabUserName
+            }
+
+        val rootRef = FirebaseFirestore.getInstance()
+        val productsRef = rootRef.collection("newererPosts")
+        var count = 0
+        productsRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                task.result?.let {
+                    for (snapshot in it) {
+                        count++
+                    }
+                }
+                print("count: $count")
+            } else {
+                task.exception?.message?.let {
+                    print(it)
+                }
+            }
+        }
+
+        currentPostCount = headerView.findViewById(R.id.navigation_header_current_post_count)
+        currentPostCount.setText("Current Post Count: $count")
     }
 
     companion object {
