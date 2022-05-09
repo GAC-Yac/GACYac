@@ -72,12 +72,12 @@
                     android:textSize="24dp"
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toStartOf="@+id/popup_window_text"
+                    app:layout_constraintEnd_toStartOf="@+id/topUsers"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/popup_window_text"
+                    android:id="@+id/topUsers"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
@@ -86,10 +86,10 @@
                     android:layout_marginBottom="50dp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center_vertical"
-                    android:lineSpacingMultiplier="1.7"
+                    android:lineSpacingMultiplier="2"
                     android:text="@string/top_5_users"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:autoSizeTextType="uniform"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
