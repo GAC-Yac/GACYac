@@ -42,7 +42,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
-            addKarma(1)
+            //addKarma(1)
         }
 
         capButton.setOnClickListener(){
@@ -53,7 +53,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
-            addKarma(-1)
+            //addKarma(-1)
         }
     }
 
