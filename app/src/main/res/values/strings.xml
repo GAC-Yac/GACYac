@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">U up?</string>
     <string name="add">Add</string>
     <string name="bonus_points">BP</string>
@@ -28,10 +28,12 @@
     <string name="karma">Karma:</string>
     <string name="date_joined">Date Joined:</string>
     <string name="nav_username">Username</string>
-    <string name="leader1">user1</string>
+    <string name="leader1" tools:ignore="Typos">user1</string>
     <string name="leader2">user2</string>
     <string name="leader3">user3</string>
     <string name="leader4">user4</string>
     <string name="leader5">user5</string>
     <string name="top_5_users">most popular users</string>
+    <string name="comment_text_here">Comment text here</string>
+    <string name="comment_creator">Comment Creator</string>
 </resources>
