@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Date
+import java.util.Date
 
 class CreatePost : AppCompatActivity() {
     private lateinit var saveButton: Button
@@ -82,9 +82,9 @@ class CreatePost : AppCompatActivity() {
             )
 
             database.collection("newererPosts")
-                .add(newPost)
+                .document(timePostCreated.toString()).set(newPost)
                 .addOnSuccessListener { documentReference ->
-                    Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    Log.d(ContentValues.TAG, "DocumentSnapshot added with ID")
                 }
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)

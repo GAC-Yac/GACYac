@@ -1,14 +1,21 @@
 package com.example.gacyac
 
+import android.content.ContentValues
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gacyac.databinding.PostItemBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import layout.ButtonHighlighterOnTouchListener2
 
-class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.ViewHolder(postBinding.root) {
+class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(postBinding.root) {
+    private var database = Firebase.firestore
+
+
     fun bindPost(post: Post){
 
         postBinding.postTitle.text = post.title
@@ -31,6 +38,7 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
             post.bonuspoints = (bpts)
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
+            saveToDatabase(bpts)
         }
 
         capButton.setOnClickListener(){
@@ -40,7 +48,19 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
             post.bonuspoints = (bpts)
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
+            saveToDatabase(bpts)
         }
+    }
+
+    private fun saveToDatabase(newBonusPoints: Int) {
+        Log.d("timeDEBUGLUKE", postBinding.tcPlaceholder.text.toString())
+        val updating = database.collection("newererPosts").document(postBinding.tcPlaceholder.text.toString())
+            updating.update("bonuspoints", newBonusPoints).addOnSuccessListener {
+                Log.d("found_referenced_post", "post bonus points changed to $newBonusPoints")
+            }
+            .addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Error updating document", e)
+            }
     }
 
     fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
