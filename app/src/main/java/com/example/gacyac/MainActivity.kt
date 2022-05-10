@@ -330,7 +330,7 @@ class MainActivity : AppCompatActivity()  {
 
         database.collection("newererPosts").orderBy("postID", Query.Direction.DESCENDING).limit(1).get().addOnSuccessListener { documents ->
             currentPostCount = headerView.findViewById(R.id.navigation_header_current_post_count)
-            currentPostCount.setText("Current Post Count: ")
+            currentPostCount.setText("Current Post Count: ${documents.documents.get(0).get("postID")}")
             //${documents.documents.get(0).get("postID")}
         }
 
