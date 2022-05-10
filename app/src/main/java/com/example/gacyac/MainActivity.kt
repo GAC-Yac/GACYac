@@ -290,7 +290,7 @@ class MainActivity : AppCompatActivity()  {
 
         })
         getProfileInformation(device_id)
-        //getLeaderboardInformation()
+        getLeaderboardInformation()
         getNavBarInfo()
     }
 
