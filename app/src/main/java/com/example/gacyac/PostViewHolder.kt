@@ -43,7 +43,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
-            //addKarma(1)
+            addKarma(1, post.androidID.toString())
         }
 
         capButton.setOnClickListener(){
@@ -55,7 +55,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
             Log.d("POST_BONUSPOINTS", post.androidID.toString())
-            //addKarma(-1, post.androidID.toString())
+            addKarma(-1, post.androidID.toString())
         }
     }
 
@@ -63,13 +63,21 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
 
 
 
-    private fun addKarma(addedKarma: Int, userID1: String) {
+    private fun addKarma(addedKarma: Long, userID1: String) {
         Log.d("amberDONKEY", "$userID1")
         database.collection("users").document(userID1).get()
             .addOnSuccessListener { documentReference ->
 
-                val bp = documentReference.get("bonuspoints") as Int
-                changeUserKarma(addedKarma+bp, userID1)
+                var bp = documentReference.get("bonuspoints") as Long
+                var bd : Long
+                if (addedKarma > 0) {
+                    bd = bp.inc()
+                } else {
+                    bd = bp.dec()
+                }
+
+                Log.d("bonusPointsOfUser", "$bd")
+                changeUserKarma(bd, userID1)
 
             }
             .addOnFailureListener { e ->
@@ -77,8 +85,8 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             }
     }
 
-    private fun changeUserKarma(newKarma: Int, userID: String) {
-        val updating = database.collection("users").document(postBinding.postCreator.text.toString())
+    private fun changeUserKarma(newKarma: Long, userID: String) {
+        val updating = database.collection("users").document(userID)
         updating.update("bonuspoints", newKarma).addOnSuccessListener {
             Log.d("found_referenced_post", "success")
         }

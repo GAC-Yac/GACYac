@@ -82,7 +82,7 @@ class CreatePost : AppCompatActivity() {
                 "time" to timePostCreated,
                 "postID" to count,
                 "userID" to userID,
-                "AndroidID" to androidID
+                "androidID" to androidID
             )
 
             database.collection("newererPosts")
