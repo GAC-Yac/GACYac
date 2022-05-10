@@ -55,7 +55,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
             Log.d("POST_BONUSPOINTS", post.androidID.toString())
-            addKarma(-1, post.androidID.toString())
+            //addKarma(-1, post.androidID.toString())
         }
     }
 
