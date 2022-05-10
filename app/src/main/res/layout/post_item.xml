@@ -54,6 +54,18 @@
                 android:lines="1"
             />
 
+            <TextView
+                android:id="@+id/postID"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/post_id_placeholder"
+                android:textColor="@color/SteelBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:lines="1"
+                />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

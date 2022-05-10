@@ -37,4 +37,6 @@
 
     <string name="current_post_count">Number of Current Posts:</string>
     <string name="last_refreshed">Last Refreshed:</string>
+
+    <string name="post_id_placeholder">1</string>
 </resources>

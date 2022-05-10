@@ -9,7 +9,6 @@
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/activity_main.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/create_post.xml" value="0.5546875" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/leaderboard_window.xml" value="0.35520833333333335" />
-        <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/nav_header.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/post_item.xml" value="0.3671875" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/profile_window.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_profile.xml" value="0.35520833333333335" />
@@ -19,6 +18,11 @@
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newLogo_round.xml" value="0.368" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newlogo_round.xml" value="0.3565" />
         <entry key="..\:/Users/Nikit/AndroidStudioProjects/GACYac/app/src/main/res/mipmap-anydpi-v26/newogo.xml" value="0.493" />
+        <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/nav_header.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/post_item.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/profile_window.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/layout/user_profile.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Nikita Sandstrom/AndroidStudioProjects/GACYac/app/src/main/res/menu/nav_menu.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/back_arrow.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/calande.xml" value="0.1645" />

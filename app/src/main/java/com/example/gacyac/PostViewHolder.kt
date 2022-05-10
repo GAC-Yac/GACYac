@@ -19,6 +19,7 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
         postBinding.tcPlaceholder.text = post.time.toString()
         postBinding.bpPlaceholder.text = post.bonuspoints.toString()
         postBinding.postCreator.text = post.userID
+        postBinding.postID.text = post.postID.toString()
 
         val faxButton: ImageButton = postBinding.faxPlaceholder
         faxButton.setOnTouchListener(ButtonHighlighterOnTouchListener2(faxButton))
@@ -51,9 +52,10 @@ class PostViewHolder(private val postBinding: PostItemBinding):RecyclerView.View
     }
 
     private fun saveToDatabase(newBonusPoints: Int) {
-        //Log.d("timeDEBUGLUKE", postBinding.postID.text.toString())
-        val updating = database.collection("newererPosts").document("postID")//(postBinding.postID.text.toString())
-        updating.update("bonuspoints", newBonusPoints).addOnSuccessListener {
+        Log.d("NIKITApostID", postBinding.postID.text.toString())
+        val testing = postBinding.postID.text.toString()
+        database.collection("newererPosts").document(testing)
+        .update("bonuspoints", newBonusPoints).addOnSuccessListener {
             Log.d("found_referenced_post", "post bonus points changed to $newBonusPoints")
         }
             .addOnFailureListener { e ->
