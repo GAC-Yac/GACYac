@@ -46,7 +46,7 @@ class UserProfile : AppCompatActivity() {
 
     }
 
-
+    // database reference of user profile information to call in onCreate
     private fun eventChangeListener(device_id: String) {
         database = FirebaseFirestore.getInstance()
         // var currentUser = database.collection("users").get().toString()

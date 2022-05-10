@@ -7,7 +7,7 @@ import android.view.View.OnTouchListener
 import android.widget.Button
 import android.widget.ImageButton
 
-
+// function create highlight ui features for on click
 class ButtonHighlighterOnTouchListener(val imageButton: Button) :
     OnTouchListener {
     override fun onTouch(view: View?, motionEvent: MotionEvent): Boolean {
@@ -21,6 +21,7 @@ class ButtonHighlighterOnTouchListener(val imageButton: Button) :
     }
 }
 
+// function create highlight ui features for on click
 class ButtonHighlighterOnTouchListener2(val imageButton: ImageButton) :
     OnTouchListener {
     override fun onTouch(view: View?, motionEvent: MotionEvent): Boolean {

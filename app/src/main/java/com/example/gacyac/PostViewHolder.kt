@@ -35,6 +35,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
         val capButton: ImageButton = postBinding.capPlaceholder
         capButton.setOnTouchListener(ButtonHighlighterOnTouchListener2(capButton))
 
+        // upvote button, integrated with total bonus points score
         faxButton.setOnClickListener(){
             Log.d("FAX_BUTTON_POST", "$postBinding")
             var bpts = Integer.parseInt(post.bonuspoints.toString())
@@ -43,9 +44,10 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             postBinding.bpPlaceholder.text = post.bonuspoints.toString()
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
-            addKarma(1, post.androidID.toString())
+            addKarma(1, post.androidID.toString()) // updates users bp
         }
 
+        // downvote button, integrated with total bonus points score
         capButton.setOnClickListener(){
             Log.d("CAP_BUTTON_POST", "$postBinding")
             var bpts = Integer.parseInt(post.bonuspoints.toString())
@@ -55,14 +57,13 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             Log.d("POST_BONUSPOINTS", post.bonuspoints.toString())
             saveToDatabase(bpts)
             Log.d("POST_BONUSPOINTS", post.androidID.toString())
-            addKarma(-1, post.androidID.toString())
+            addKarma(-1, post.androidID.toString()) // updates users bp
         }
     }
 
 
 
-
-
+    // increments total user karma by scale of 1 based on post details
     private fun addKarma(addedKarma: Long, userID1: String) {
         Log.d("amberDONKEY", "$userID1")
         database.collection("users").document(userID1).get()
@@ -85,6 +86,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
             }
     }
 
+    // updates karma in database, reference call in addKarma
     private fun changeUserKarma(newKarma: Long, userID: String) {
         val updating = database.collection("users").document(userID)
         updating.update("bonuspoints", newKarma).addOnSuccessListener {
@@ -96,6 +98,7 @@ class PostViewHolder(val postBinding: PostItemBinding):RecyclerView.ViewHolder(p
     }
 
 
+    // updates bonus point value for each post
     private fun saveToDatabase(newBonusPoints: Int) {
         //Log.d("timeDEBUGLUKE", postBinding.postID.text.toString())
         val updating = database.collection("newererPosts").document(postBinding.postID.text.toString())

@@ -5,6 +5,7 @@ import java.util.Date
 
 var postList = mutableListOf<Post>()
 
+// database criteria being stored for each individual post in database
 class Post(
     var title: String ?= null,
     var text: String ?= null,

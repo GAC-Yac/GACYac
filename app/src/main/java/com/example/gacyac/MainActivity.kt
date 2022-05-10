@@ -152,6 +152,7 @@ class MainActivity : AppCompatActivity()  {
         val profile_layout = findViewById<View>(R.id.profile_id) as View
         val leaderboard_layout = findViewById<View>(R.id.leaderboard_id) as View
 
+        // user profile button, overlays current activity
         val bpButton: ImageButton = findViewById(R.id.btnBonusPoints)
         bpButton.setOnClickListener{
             val animationIn = com.google.android.material.R.anim.abc_slide_in_top
@@ -172,6 +173,7 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+        // leaderboard button, overlays current activity
         val leaderboardButton: ImageButton = findViewById(R.id.btnLeaderboard)
         leaderboardButton.setOnClickListener{
             val animationIn = com.google.android.material.R.anim.abc_slide_in_top
@@ -192,7 +194,7 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
-
+        // removes overlay of leaderboard with animation
         val leaderboardRemovalButton: Button = findViewById(R.id.leaderboardRemoveBtn)
         leaderboardRemovalButton.setOnTouchListener(ButtonHighlighterOnTouchListener(leaderboardRemovalButton))
         leaderboardRemovalButton.setOnClickListener{
@@ -204,6 +206,7 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+        // removes profile overlay with animation
         val profileRemovalButton: Button = findViewById(R.id.profileRmvBtn)
         profileRemovalButton.setOnTouchListener(ButtonHighlighterOnTouchListener(profileRemovalButton))
         profileRemovalButton.setOnClickListener{
@@ -218,7 +221,7 @@ class MainActivity : AppCompatActivity()  {
         eventChangeListener(androidID)
     }
 
-
+    // creates sidebar menu, only available on android 12
     private fun initNavigationDrawer() {
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -236,6 +239,7 @@ class MainActivity : AppCompatActivity()  {
 
     }
 
+    // retrieves information from database for user profiles
     private fun getProfileInformation(device_id: String){
         database = FirebaseFirestore.getInstance()
         username = findViewById(R.id.username)
@@ -265,7 +269,7 @@ class MainActivity : AppCompatActivity()  {
             }
     }
 
-
+    // initializes database by querying the post data and arranging it on startup
     private fun eventChangeListener(device_id: String) {
         database = FirebaseFirestore.getInstance()
         database.collection("newererPosts").orderBy("postID").
