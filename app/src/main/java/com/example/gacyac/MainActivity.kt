@@ -1,5 +1,6 @@
 package com.example.gacyac
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import layout.ButtonHighlighterOnTouchListener
 import org.w3c.dom.Text
+import layout.ButtonHighlighterOnTouchListener2
 import java.sql.Date
 import java.text.SimpleDateFormat
 
@@ -76,7 +78,8 @@ class MainActivity : AppCompatActivity()  {
             val user = hashMapOf(
                 "username" to username,
                 "bonuspoints" to 0,
-                "dateJoined" to Date(System.currentTimeMillis())
+                "dateJoined" to Date(System.currentTimeMillis()),
+                "AndroidIdentifier" to androidID
             )
             database.collection("users")
                 .document(device_id).set(user)
@@ -244,7 +247,7 @@ class MainActivity : AppCompatActivity()  {
                 Log.d(ContentValues.TAG, "data has been retrieved")
                 val usernameChange = documentReference.get("username").toString()
                 Log.d(ContentValues.TAG, "user already exists, username is $username")
-                val timestamp= documentReference.get("dateJoined") as com.google.firebase.Timestamp
+                val timestamp = documentReference.get("dateJoined") as com.google.firebase.Timestamp
                 val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
                 val sdf = SimpleDateFormat("MM/dd/yyyy")
                 val netDate = Date(milliseconds)
@@ -283,7 +286,7 @@ class MainActivity : AppCompatActivity()  {
 
         })
         getProfileInformation(device_id)
-        getLeaderboardInformation()
+        //getLeaderboardInformation()
         getNavBarInfo()
     }
 
@@ -327,7 +330,8 @@ class MainActivity : AppCompatActivity()  {
 
         database.collection("newererPosts").orderBy("postID", Query.Direction.DESCENDING).limit(1).get().addOnSuccessListener { documents ->
             currentPostCount = headerView.findViewById(R.id.navigation_header_current_post_count)
-            currentPostCount.setText("Current Post Count: ${documents.documents.get(0).get("postID")}")
+            currentPostCount.setText("Current Post Count: ")
+            //${documents.documents.get(0).get("postID")}
         }
 
         val lastRefreshed : TextView = headerView.findViewById(R.id.navigation_header_last_refreshed)

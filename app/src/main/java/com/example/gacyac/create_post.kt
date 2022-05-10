@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Date
+import java.util.Date
 
 class CreatePost : AppCompatActivity() {
     private lateinit var saveButton: Button
@@ -35,6 +35,8 @@ class CreatePost : AppCompatActivity() {
 
         androidID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID)
 
+        //var postCreatorID = findViewById(R.id.postCreatorID)
+
         database.collection("users").document(androidID).get()
             .addOnSuccessListener { documentReference ->
                 Log.d(ContentValues.TAG, "data has been retrieved")
@@ -47,17 +49,18 @@ class CreatePost : AppCompatActivity() {
             }
 
 
+
+
         val rootRef = FirebaseFirestore.getInstance()
         val productsRef = rootRef.collection("newererPosts")
-        var count = 0
+        var count = "1"
         productsRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 task.result?.let {
                     for (snapshot in it) {
-                        count++
+                        count = (Integer.parseInt(count) + 1).toString()
                     }
                 }
-                print("count: $count")
             } else {
                 task.exception?.message?.let {
                     print(it)
@@ -78,13 +81,14 @@ class CreatePost : AppCompatActivity() {
                 "bonuspoints" to 0,
                 "time" to timePostCreated,
                 "postID" to count,
-                "userID" to userID
+                "userID" to userID,
+                "androidID" to androidID
             )
 
             database.collection("newererPosts")
-                .add(newPost)
+                .document(newPost.get("postID").toString()).set(newPost)
                 .addOnSuccessListener { documentReference ->
-                    Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    Log.d(ContentValues.TAG, "DocumentSnapshot added with ID")
                 }
                 .addOnFailureListener { e ->
                     Log.w(ContentValues.TAG, "Error adding document", e)
